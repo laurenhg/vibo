@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 
+
 function LoginForm({onLogin}) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -43,41 +44,43 @@ function LoginForm({onLogin}) {
 
 
     return (
+        <>
         <div>
+            <h1 className="logo"> ViBo </h1>
+            <p className="byline">Discover and Organize Books: Your Way</p>
             <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <legend>Log-in</legend>
-                    <div>
-                        <label htmlFor="loginEmail">Email:</label>
-                        <input
-                            type="email"
-                            id="loginEmail"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            placeholder="email"
-                            autoComplete="email"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="loginPassword">Password:</label>
-                        <input
-                            type="password"
-                            id="loginPassword"
-                            name="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            placeholder="Enter your password"
-                        />
-                    </div>
-                    {error && <p style={{color: 'red'}}>{error}</p>}
-                    <button type="submit" disabled={loading}> {loading ? "Logging in..." : "Login"}</button>
-                </fieldset>
+                <div className="login-section">
+                    <h2>Log-in</h2>
+                    <label htmlFor="loginEmail">Email:</label>
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        placeholder="email"
+                        autoComplete="email"
+                    />
+                </div>
+                <div className="login-section">
+                    <label htmlFor="loginPassword">Password:</label>
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        placeholder="Enter your password"
+                    />
+                </div>
+                {error && <p style={{color: 'red'}}>{error}</p>}
+                <button className="login-section" type="submit" disabled={loading}> {loading ? "Logging in..." : "Login"}</button>
+
             </form>
         </div>
-
+        </>
     );
 }
 

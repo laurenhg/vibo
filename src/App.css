@@ -1,4 +1,5 @@
 /* fonts, colors, global styles, Pages, components */
+@import url("https://use.typekit.net/mkb6hpk.css");
 
 #root {
   max-width: 1280px;
@@ -9,7 +10,32 @@
 
 /*1.-----------Global Styles--------*/
 
+.image {
+    width: 100%;
+    height: auto;
+}
 
+body {
+    font-family: "Degular Display";
+    color: #392E3D
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 76px;
+   letter-spacing: 1px;
+    color: #E22742;
+    margin: 0;
+}
+
+.byline{
+    margin: 0;
+}
+
+h2 {
+    font-weight: 400;
+    font-size:26px;
+}
 /*2.------------ Header--------------*/
 
 /*3.-----------Welcome Page------------*/
@@ -26,6 +52,27 @@
 
 /*9.-----------Components------------*/
 
+.login-section input[type="email"],
+.login-section input[type="password"] {
+    padding: 0, 0, 0, 50px;
+/*display: flex;*/
+  align-items:center;
+  justify-content: flex-start;
+  margin: 1rem;
+  flex-grow: 1;
+  height: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.login-section button[type="submit"] {
+  margin-top: 1px;
+  width: 100%;
+    padding-left: 40px;
+
+}
+
+
 .welcome-container {
   width: 100%;
   max-width: 500px;
@@ -35,15 +82,17 @@
   overflow: hidden;
 }
 
-.login-section {
-  background-color: white;
-  padding: 20px;
+.login-section label {
+ margin-right: 1rem;
+  border: 2px solid #ededed;
+  border: 8px;
+  overflow: hidden;
 }
 
 .registration-section {
   background-color: indianred;
   color:white;
-  padding: 20px;
+  padding: 75px;
 }
 
 

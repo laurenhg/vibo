@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import LoginForm from "../components/Login.jsx";
 import RegistrationForm from "../components/RegistrationForm.jsx";
+import bookshelf from "../assets/bookshelf.png"
 
 
 
@@ -13,6 +14,9 @@ function Welcome () {
             </div>
             <div className="registration-section">
                 <RegistrationForm onRegister={(email, password) => console.log(email, password)}/>
+            </div>
+            <div>
+                <img src={bookshelf} alt="abstract bookshelf" className="image"/>
             </div>
         </div>
     )
