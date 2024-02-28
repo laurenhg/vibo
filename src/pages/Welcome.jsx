@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import LoginForm from "../components/Login.jsx";
 import RegistrationForm from "../components/RegistrationForm.jsx";
+import '../styles/Navigation.css'
 import bookshelf from "../assets/bookshelf.png"
 
 

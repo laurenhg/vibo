@@ -1,9 +1,10 @@
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginForm from "./components/Login.jsx";
 import Welcome from "./pages/Welcome.jsx";
 import "../src/App.css";
 import TrendingHome from "./pages/TrendingHome.jsx";
+import Navigation from "./components/Navigation.jsx";
+import LayoutWithNav from "./components/LayoutWithNav.jsx";
 // import AccountSettings from './'
 
 
@@ -17,7 +18,7 @@ function App () {
         <Router>
             <Routes>
                 <Route path="/" element={<Welcome/>}/>
-                <Route path="/TrendingHome" element={<TrendingHome/>}/>
+                <Route path="/TrendingHome" element={<LayoutWithNav><TrendingHome /></LayoutWithNav>}/>
             </Routes>
         </Router>
     );

@@ -36,7 +36,7 @@ h2 {
     font-weight: 400;
     font-size:26px;
 }
-/*2.------------ Header--------------*/
+/*2.------------ Navigation/Header--------------*/
 
 /*3.-----------Welcome Page------------*/
 
@@ -51,49 +51,6 @@ h2 {
 /*8.-----------Footer------------*/
 
 /*9.-----------Components------------*/
-
-.login-section input[type="email"],
-.login-section input[type="password"] {
-    padding: 0, 0, 0, 50px;
-/*display: flex;*/
-  align-items:center;
-  justify-content: flex-start;
-  margin: 1rem;
-  flex-grow: 1;
-  height: 20px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.login-section button[type="submit"] {
-  margin-top: 1px;
-  width: 100%;
-    padding-left: 40px;
-
-}
-
-
-.welcome-container {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  border: 2px solid #ededed;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.login-section label {
- margin-right: 1rem;
-  border: 2px solid #ededed;
-  border: 8px;
-  overflow: hidden;
-}
-
-.registration-section {
-  background-color: indianred;
-  color:white;
-  padding: 75px;
-}
 
 
 
