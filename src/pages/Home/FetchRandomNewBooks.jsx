@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './FetchRandomNewBooks.css';
+import {Link} from 'react-router-dom'
 
 const FetchRandomNewBooks = () => {
     const [loading, setLoading] = useState(false);
@@ -43,10 +44,12 @@ const FetchRandomNewBooks = () => {
             index === self.findIndex((t) => t.key === book.key)
         );
 
-        const bookCards = accumulatedBooks.map((book, index) => (
-            <div key={`${book.key}-${index}`} className="bookCard"> {/* Append index to book.key */}
-                <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} alt={book.title} className="bookCover"/>
-                <p className="bookTitle">{book.title}</p>
+        const bookCards = uniqueBooks.map((book, index) => (
+            <div key={`${book.key}-${index}`} className="bookCard">
+                <Link to={`/book/${book.key.replace('/works/', '')}`}> {/* Remove the '/works/' part from the key to get the ID */}
+                    <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} alt={book.title} className="bookCover"/>
+                    <p className="bookTitle">{book.title}</p>
+                </Link>
             </div>
         ));
 

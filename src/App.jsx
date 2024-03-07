@@ -6,10 +6,8 @@ import TrendingHome from "./pages/Home/TrendingHome.jsx";
 import Navigation from "./components/Navigation/Navigation.jsx";
 import LayoutWithNav from "./components/LayoutWithNav.jsx";
 import SearchInput from "./components/SearchInput.jsx";
-
-
-// import AccountSettings from './'
-
+import BookInfo from "./components/BookInfo/BookInfo.jsx";
+import FetchRandomNewBooks from "./pages/Home/FetchRandomNewBooks.jsx";
 
 function App () {
     const handleLogin = async (email, password) => {
@@ -23,7 +21,11 @@ function App () {
                 <Route path="/" element={<LoginRegister/>}/>
                 <Route path="/TrendingHome" element={<LayoutWithNav><TrendingHome /></LayoutWithNav>}/>
                 <Route path="/search" element={<LayoutWithNav><SearchInput/></LayoutWithNav>} />
-            </Routes>
+                <Route path="new-books" element={<LayoutWithNav><FetchRandomNewBooks /></LayoutWithNav>} />
+
+                <Route path="/login" element={<LoginRegister/>}/>
+                <Route path="/book/:id" element={<BookInfo/>} />
+             </Routes>
 
     );
 
