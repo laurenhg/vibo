@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import FetchRandomNewBooks from "./FetchRandomNewBooks.jsx";
 
-function Home () {
+function TrendingHome () {
     return (
         <div>
             <FetchRandomNewBooks/>
@@ -10,4 +10,4 @@ function Home () {
     );
 }
 
-export default Home;
+export default TrendingHome;

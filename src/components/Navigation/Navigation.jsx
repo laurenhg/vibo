@@ -8,7 +8,7 @@ function Navigation () {
 
     return (
         <nav className="navigation">
-        <NavLink to="/Home" className={({isActive}) => isActive === true ? 'active-link' : 'default-link'}> Home</NavLink>
+        <NavLink to="/TrendingHome" className={({isActive}) => isActive === true ? 'active-link' : 'default-link'}> Home</NavLink>
         <NavLink to="/Search" className={({isActive}) => isActive === true ? 'active-link' : 'default-link'}>Search</NavLink>
         <NavLink to="/MyBookshelf" className={({isActive}) => isActive === true ? 'active-link' : 'default-link'}>My Bookshelf</NavLink>
         <NavLink to="/AuthorPortal" className={({isActive}) => isActive === true ? 'active-link' : 'default-link'}> Author Portal</NavLink>

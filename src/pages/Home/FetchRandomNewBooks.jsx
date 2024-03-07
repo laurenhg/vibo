@@ -1,48 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './FetchRandomNewBooks.css'
+import './FetchRandomNewBooks.css';
 
 const FetchRandomNewBooks = () => {
     const [loading, setLoading] = useState(false);
     const [recentBooks, setRecentBooks] = useState([]);
 
-    const fetchRandomNewBooks = async () => {
+    const loadRandomBooks = async () => {
         setLoading(true);
-        try {
-            // Generate a random value for the sort parameter
-            const randomSort = Math.random() < 0.5 ? 'random' : 'random1';
-            const response = await axios.get('https://openlibrary.org/search.json', {
-                params: {
-                    q: '*',
-                    sort: randomSort,
-                    limit: 25,
-                    publish_date: '[2020 TO *]', // This filters books published in 2023 or later
-                    lang: 'en' // Filter by English language
-                }
-            });
+        let accumulatedBooks = [];
+        const targetBookCount = 25;
+        let attempts = 0;
+        const maxAttempts = 5; // Adjust based on your testing
 
-            // Filter out titles that are not in English and do not have a cover
-            const filteredBooks = response.data.docs.filter(book => book.language && book.language.includes('eng') && book.cover_i);
+        while (accumulatedBooks.length < targetBookCount && attempts < maxAttempts) {
+            attempts++;
+            try {
+                const randomSort = Math.random() < 0.5 ? 'random' : 'random1';
+                const response = await axios.get('https://openlibrary.org/search.json', {
+                    params: {
+                        q: '*',
+                        sort: randomSort,
+                        limit: 100, // Try fetching more books in one go
+                        publish_date: '[2020 TO *]',
+                        lang: 'en',
+                    },
+                });
 
-            // Map each book to a book card component
-            const bookCards = filteredBooks.map(book => (
-                <div key={book.key} className="bookCard">
-                    <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} alt={book.title}className="bookCover"/>
-                    <p className="bookTitle">{book.title}</p>
-                </div>
-            ));
+                const newFilteredBooks = response.data.docs.filter(book => book.language && book.language.includes('eng') && book.cover_i);
+                accumulatedBooks = [...accumulatedBooks, ...newFilteredBooks].slice(0, targetBookCount);
 
-            setRecentBooks(bookCards);
-        } catch (error) {
-            console.error('Error fetching recent books:', error);
-        } finally {
-            setLoading(false);
+                // Break the loop if no new books are found in the current attempt
+                if (newFilteredBooks.length === 0) break;
+
+            } catch (error) {
+                console.error('Error fetching recent books:', error);
+                // Optionally implement a more sophisticated retry logic here
+            }
         }
+
+        const uniqueBooks = accumulatedBooks.filter((book, index, self) =>
+            index === self.findIndex((t) => t.key === book.key)
+        );
+
+        const bookCards = accumulatedBooks.map((book, index) => (
+            <div key={`${book.key}-${index}`} className="bookCard"> {/* Append index to book.key */}
+                <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} alt={book.title} className="bookCover"/>
+                <p className="bookTitle">{book.title}</p>
+            </div>
+        ));
+
+        setRecentBooks(bookCards);
+        setLoading(false);
     };
+
+    useEffect(() => {
+        loadRandomBooks();
+    }, []);
 
     return (
         <div>
-            <button onClick={fetchRandomNewBooks} disabled={loading}>
+            <button onClick={() => loadRandomBooks()} disabled={loading}>
                 {loading ? 'Loading...' : 'Show me some titles'}
             </button>
             <div className="bookCardContainer">

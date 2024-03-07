@@ -2,9 +2,10 @@ import React from 'react';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginRegister from "./pages/LoginRegister/login-register.jsx";
 import "../src/App.css";
-import Home from "./pages/Home/Home.jsx";
+import TrendingHome from "./pages/Home/TrendingHome.jsx";
 import Navigation from "./components/Navigation/Navigation.jsx";
-import LayoutWithNav from "./components/Navigation/LayoutWithNav.jsx";
+import LayoutWithNav from "./components/LayoutWithNav.jsx";
+import SearchInput from "./components/SearchInput.jsx";
 
 
 // import AccountSettings from './'
@@ -20,7 +21,7 @@ function App () {
 
             <Routes>
                 <Route path="/" element={<LoginRegister/>}/>
-                <Route path="/Home" element={<LayoutWithNav><Home /></LayoutWithNav>}/>
+                <Route path="/TrendingHome" element={<LayoutWithNav><TrendingHome /></LayoutWithNav>}/>
                 <Route path="/search" element={<LayoutWithNav><SearchInput/></LayoutWithNav>} />
             </Routes>
 
