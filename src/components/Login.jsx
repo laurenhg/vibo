@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import '../styles/Login-registration.css'
+import '../pages/LoginRegister/Login-register.css'
 
 
 function LoginForm({onLogin}) {

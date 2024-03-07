@@ -10,12 +10,28 @@
     align-items: center !important;
 }
 
-.nav-link {
+/*.nav-link {*/
+/*    text-decoration: none;*/
+/*    color: #392E3D;*/
+/*    font-weight: 400;*/
+/*    margin: 0 1rem;*/
+/*}*/
+
+.active-link {
     text-decoration: none;
-    color: #392E3D;
+    color: indianred;
     font-weight: 400;
     margin: 0 1rem;
 }
+
+    .default-link {
+        text-decoration: none;
+        color: #392E3D;
+        font-weight: 400;
+        margin: 0 1rem;
+
+    }
+
 
 .avatar-container {
     /*position: relative;*/

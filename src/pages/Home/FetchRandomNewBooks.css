@@ -1,0 +1,22 @@
+.bookCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.bookCard {
+    text-align: center;
+    margin: 10px;
+    width: 200px;
+}
+
+.bookCover {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.bookTitle {
+ margin-top: 10px;
+}
