@@ -46,7 +46,7 @@ const FetchRandomNewBooks = () => {
 
         const bookCards = uniqueBooks.map((book, index) => (
             <div key={`${book.key}-${index}`} className="bookCard">
-                <Link to={`/book/${book.key.replace('/works/', '')}`}> {/* Remove the '/works/' part from the key to get the ID */}
+                <Link to={`/book/${book.key.replace('/works/', '')}`}>
                     <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} alt={book.title} className="bookCover"/>
                     <p className="bookTitle">{book.title}</p>
                 </Link>
