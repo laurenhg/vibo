@@ -1,39 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const BookDetail = () => {
     const [bookDetails, setBookDetails] = useState(null);
-    const { id } = useParams(); // This gets the ID from the URL
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchBookDetails = async () => {
             try {
-                // Fetching work details
                 const workResponse = await axios.get(`https://openlibrary.org/works/${id}.json`);
                 const workDetails = workResponse.data;
 
+                // Assuming subjects might be better retrieved from the work details
+                // directly rather than editions if available
+                const subjects = workDetails.subjects ? workDetails.subjects.join(', ') : 'Subjects information unavailable';
+
                 const authorDetailsPromises = workDetails.authors.map(author =>
-                    axios.get(`https://openlibrary.org/authors/${author.author.key.replace('/authors/', '')}.json`)
+                    axios.get(`https://openlibrary.org${author.author.key}.json`)
                 );
                 const authorsDetails = await Promise.all(authorDetailsPromises);
 
-
+                // You might still want to fetch edition details for other purposes
                 const editionsResponse = await axios.get(`https://openlibrary.org/works/${id}/editions.json`);
-                if (editionsResponse.data.entries.length > 0) {
-                    const firstEdition = editionsResponse.data.entries[0];
+                const firstEdition = editionsResponse.data.entries?.[0] ?? {};
 
-                    setBookDetails({
-                        title: workDetails.title,
-                        authors: authorsDetails.map(authorRes => authorRes.data.name),
-                        cover_id: workDetails.covers ? workDetails.covers[0] : null,
-                        publisher: firstEdition.publishers ? firstEdition.publishers[0] : "Publisher information unavailable",
-                        publish_date: firstEdition.publish_date,
-                        page_count: firstEdition.number_of_pages,
-                        language: firstEdition.languages ? firstEdition.languages[0].key.replace('/languages/', '') : "Language information unavailable",
-                        subjects: firstEdition.subjects ? firstEdition.subjects.map(subject => subject.name).join(', ') : "Subject information unavailable",
-                    });
-                }
+                setBookDetails({
+                    title: workDetails.title,
+                    authors: authorsDetails.map(res => res.data.name),
+                    cover_id: workDetails.covers?.[0] ?? null,
+                    publisher: firstEdition.publishers?.[0] ?? "Publisher information unavailable",
+                    publish_date: firstEdition.publish_date ?? "Publish date unavailable",
+                    page_count: firstEdition.number_of_pages,
+                    language: firstEdition.languages?.[0]?.key.replace('/languages/', '') ?? "Language information unavailable",
+                    subjects: subjects, // Use subjects from work details if available
+                });
             } catch (error) {
                 console.error('Error fetching book details:', error);
             }
@@ -46,6 +48,7 @@ const BookDetail = () => {
 
     return (
         <div>
+            <button onClick={() => navigate(-1)}>Back</button>
             <img src={`https://covers.openlibrary.org/b/id/${bookDetails.cover_id}-L.jpg`} alt={bookDetails.title} />
             <h2>{bookDetails.title}</h2>
             {bookDetails.authors && bookDetails.authors.map((author, index) => (
@@ -56,6 +59,7 @@ const BookDetail = () => {
             <p>Page Count: {bookDetails.page_count}</p>
             <p>Language: {bookDetails.language}</p>
             <p>Subjects: {bookDetails.subjects}</p>
+            <button onClick={() => console.log("Book added to shelf")}>Add to Shelf</button>
         </div>
     );
 };
