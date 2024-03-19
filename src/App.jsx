@@ -6,11 +6,11 @@ import TrendingHome from "./pages/Home/TrendingHome.jsx";
 import Navigation from "./components/Navigation/Navigation.jsx";
 import LayoutWithNav from "./components/LayoutWithNav.jsx";
 import SearchInput from "./components/SearchInput.jsx";
-
-
-// import AccountSettings from './'
-
-
+import BookInfo from "./components/BookInfo/BookInfo.jsx";
+import FetchRandomNewBooks from "./pages/Home/FetchRandomNewBooks.jsx";
+import MyBookshelf from "./pages/MyBookshelf/MyBookshelf.jsx";
+import Search from "./pages/Search/Search.jsx";
+import AuthorPortal from "./pages/AuthorPortal/AuthorPortal.jsx";
 function App () {
     const handleLogin = async (email, password) => {
         console.log ("Login Attempt with:", email, password);
@@ -20,10 +20,17 @@ function App () {
     return (
 
             <Routes>
-                <Route path="/" element={<LoginRegister/>}/>
+
                 <Route path="/TrendingHome" element={<LayoutWithNav><TrendingHome /></LayoutWithNav>}/>
-                <Route path="/search" element={<LayoutWithNav><SearchInput/></LayoutWithNav>} />
-            </Routes>
+                <Route path="/search" element={<LayoutWithNav><Search/></LayoutWithNav>} />
+                <Route path="/MyBookshelf" element={<LayoutWithNav><MyBookshelf /></LayoutWithNav>} />
+                <Route path="/AuthorPortal" element={<LayoutWithNav><AuthorPortal /></LayoutWithNav>} />
+                <Route path="new-books" element={<LayoutWithNav><FetchRandomNewBooks /></LayoutWithNav>} />
+                <Route path="/" element={<LoginRegister/>}/>
+
+                <Route path="/login" element={<LoginRegister/>}/>
+                <Route path="/book/:id" element={<BookInfo/>} />
+             </Routes>
 
     );
 
