@@ -2,64 +2,70 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2px;
+    padding: 0.1rem 4rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.navigation-right {
-    display: flex !important;
-    align-items: center !important;
-}
-
-/*.nav-link {*/
-/*    text-decoration: none;*/
-/*    color: #392E3D;*/
-/*    font-weight: 400;*/
-/*    margin: 0 1rem;*/
-/*}*/
-
-.active-link {
-    text-decoration: none;
-    color: indianred;
-    font-weight: 400;
-    margin: 0 1rem;
-}
-
-    .default-link {
-        text-decoration: none;
-        color: #392E3D;
-        font-weight: 400;
-        margin: 0 1rem;
-
-    }
-
-
-.avatar-container {
-    /*position: relative;*/
-    /*display: flex;*/
-    /*align-items: center;*/
-    border: 1px solid #392E3D;
-    border-radius: 50%;
-    padding: 0.5rem;
+.navigation-left, .navigation-right {
     display: flex;
-    flex-display: column;
     align-items: center;
 }
 
+.navigation-links {
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+}
+
+.logo {
+    margin-right: 2rem;
+    height: 250px;
+}
+
+.navigation-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
 .avatar {
-    width:26px;
-    height: 26px;
-    /*padding: 7px;*/
-    /*margin-left: 1rem;*/
-    /*margin-bottom: 10px;*/
+    border: 2px solid #392E3D;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+    padding: 10px;
 }
 
 .hamburger-menu {
-    /*position: absolute;*/
-    /*bottom: -30px;*/
-    /*left: 50%;*/
-    /*transform: translateX(-50%);*/
     background-color: transparent;
+    border: none;
+    color:black;
     cursor: pointer;
-    padding: 0.5rem;
+    font-size: 2rem;
+}
 
+.active-link, .default-link {
+    text-decoration: none;
+    color: #392E3D;
+    font-weight: 600;
+    margin: 0 1rem;
+    padding: 0.5rem 0;
+    font-size: 20px;
+}
+
+.active-link:hover, .default-link:hover {
+    text-decoration: underline;
+}
+
+.active-link {
+    color: #DE0F3F;
+    text-decoration: none;
 }

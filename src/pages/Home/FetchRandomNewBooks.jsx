@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './FetchRandomNewBooks.css';
 import { Link } from 'react-router-dom';
+import CustomButton from "../../components/button/Button.jsx";
 
 const FetchRandomNewBooks = () => {
     const [loading, setLoading] = useState(false);
@@ -31,18 +32,18 @@ const FetchRandomNewBooks = () => {
                     params: {
                         q: '*',
                         sort: randomSort,
-                        limit: 100, // Fetch more books in one go to increase the chance of finding unique books
+                        limit: 100,
                         lang: 'en',
                     },
                 });
 
-                // Filter books with English language and a cover image
+
                 const newFilteredBooks = response.data.docs.filter(book => book.language && book.language.includes('eng') && book.cover_i);
 
-                // Remove duplicates from the accumulated books
+
                 const uniqueNewFilteredBooks = newFilteredBooks.filter(newBook => !accumulatedBooks.some(accBook => accBook.key === newBook.key));
 
-                // Accumulate unique books
+
                 accumulatedBooks = [...accumulatedBooks, ...uniqueNewFilteredBooks].slice(0, targetBookCount);
 
                 if (newFilteredBooks.length === 0) break;
@@ -51,13 +52,13 @@ const FetchRandomNewBooks = () => {
             }
         }
 
-        // Update the state with the accumulated unique books
+
         setBooksData(accumulatedBooks);
         sessionStorage.setItem('recentBooksData', JSON.stringify(accumulatedBooks));
         setLoading(false);
     };
 
-    // Render book cards from the unique books data
+
     const bookCards = booksData.map((book, index) => (
         <div key={`${book.key}-${index}`} className="bookCard">
             <Link to={`/book/${book.key.replace('/works/', '')}`}>
@@ -69,9 +70,10 @@ const FetchRandomNewBooks = () => {
 
     return (
         <div>
-            <button onClick={() => { sessionStorage.removeItem('recentBooksData'); loadRandomBooks(); }} disabled={loading}>
+
+            <CustomButton onClick={() => { sessionStorage.removeItem('recentBooksData'); loadRandomBooks(); }} disabled={loading}>
                 {loading ? 'Loading...' : 'Show me some titles'}
-            </button>
+            </CustomButton>
             <div className="bookCardContainer">
                 {bookCards}
             </div>
