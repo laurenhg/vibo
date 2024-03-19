@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import './Login-register.css'
 
 function RegistrationForm ({onRegister}) {
     const navigate = useNavigate();
@@ -15,6 +16,11 @@ function RegistrationForm ({onRegister}) {
             return;
         }
         onRegister(email, password);
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        alert("Thanks for registering. Please check your email to confirm your account and then log-in!")
+
     };
 
     return (

@@ -1,9 +1,13 @@
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginForm from "./components/Login.jsx";
-import Welcome from "./pages/Welcome.jsx";
+import LoginRegister from "./pages/LoginRegister/login-register.jsx";
 import "../src/App.css";
-import TrendingHome from "./pages/TrendingHome.jsx";
+import TrendingHome from "./pages/Home/TrendingHome.jsx";
+import Navigation from "./components/Navigation/Navigation.jsx";
+import LayoutWithNav from "./components/LayoutWithNav.jsx";
+import SearchInput from "./components/SearchInput.jsx";
+
+
 // import AccountSettings from './'
 
 
@@ -14,12 +18,13 @@ function App () {
     //     This could be a call to backend
     };
     return (
-        <Router>
+
             <Routes>
-                <Route path="/" element={<Welcome/>}/>
-                <Route path="/TrendingHome" element={<TrendingHome/>}/>
+                <Route path="/" element={<LoginRegister/>}/>
+                <Route path="/TrendingHome" element={<LayoutWithNav><TrendingHome /></LayoutWithNav>}/>
+                <Route path="/search" element={<LayoutWithNav><SearchInput/></LayoutWithNav>} />
             </Routes>
-        </Router>
+
     );
 
 }

@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import LoginForm from "../components/Login.jsx";
-import RegistrationForm from "../components/RegistrationForm.jsx";
-import bookshelf from "../assets/bookshelf.png"
+import LoginForm from "./Login.jsx";
+import RegistrationForm from "./RegistrationForm.jsx";
+import '../../components/Navigation/Navigation.css'
+import bookshelf from "../../assets/bookshelf.png"
 
 
 
 
-function Welcome () {
+function LoginRegister () {
     return (
         <div className="welcome-container">
             <div className="login-container">
@@ -22,4 +23,4 @@ function Welcome () {
     )
 }
 
-export default Welcome;
+export default LoginRegister;
