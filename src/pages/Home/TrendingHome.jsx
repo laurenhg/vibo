@@ -1,26 +1,21 @@
 import React from 'react';
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import FetchRandomNewBooks from "./FetchRandomNewBooks.jsx";
+import bookshelf from '../../assets/bookshelf.png'
 
 function TrendingHome () {
     return (
-        <div>
+        <div className="trending-home-container">
+            {/*<Navigation/>*/}
+            <main className="fetch-random-new-titles">
             <FetchRandomNewBooks/>
+            </main>
+            {/*<Footer>*/}
+            {/*    <p>This is a footer</p>*/}
+            {/*</Footer>*/}
         </div>
     );
 }
 
-// import React from 'react';
-// import Collections from "./Collections.jsx";
-// import topicCollections from "./collectionsConfig.js";
-//
-// const TrendingHome = () => {
-//     return (
-//         <div>
-//             {topicCollections.map((collection) => (
-//                 <Collections key={collection.title} title={collection.title} query={collection.query}/>
-//             ))}
-//         </div>
-//     );
-// };
+
 export default TrendingHome;
