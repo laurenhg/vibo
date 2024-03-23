@@ -1,49 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './FetchRandomNewBooks.css';
 import { Link } from 'react-router-dom';
-import CustomButton from "../../components/button/Button.jsx";
-import {fetchAndFilterBooks} from "../../helpers/fetchAndFilterBooks.js";
+import Button from "../../components/button/Button.jsx";
+import { fetchAndFilterBooks } from "../../helpers/fetchAndFilterBooks"; // Ensure this path is correct
+import './FetchRandomNewBooks.css'; // Assuming this is where your CSS is defined
 
 const FetchRandomNewBooks = () => {
+    const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [booksData, setBooksData] = useState([]);
-    const [buttonText, setButtonText] = useState('Show me some titles');
 
-    const loadRandomBooks = async () => {
-        // Here, we call the helper function directly
-        const booksToShow = await fetchAndFilterBooks(25, setLoading, setButtonText);
-        setBooksData(booksToShow);
-        sessionStorage.setItem('recentBooksData', JSON.stringify(booksToShow));
-        setLoading(false); // Ensure loading is set to false after fetching
-        setButtonText('Show me some titles'); // Reset button text
+    // Function to load random books
+    const loadBooks = async () => {
+        setLoading(true);
+        const newBooks = await fetchAndFilterBooks('fiction', 25);
+        setBooks(newBooks);
+        setLoading(false);
     };
 
+    // Load books on component mount and when the loadBooks function changes
     useEffect(() => {
-        const storedBooksData = sessionStorage.getItem('recentBooksData');
-        if (!storedBooksData) {
-            loadRandomBooks();
-        } else {
-            setBooksData(JSON.parse(storedBooksData));
-        }
+        loadBooks();
     }, []);
-
-    const bookCards = booksData.map((book, index) => (
-        <div key={`${book.key}-${index}`} className="bookCard">
-            <Link to={`/book/${book.key.replace('/works/', '')}`}>
-                <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} alt={book.title} className="bookCover"/>
-                <p className="bookTitle">{book.title}</p>
-            </Link>
-        </div>
-    ));
 
     return (
         <div>
-            <CustomButton onClick={() => { sessionStorage.removeItem('recentBooksData'); loadRandomBooks(); }} disabled={loading}>
-                {buttonText}
-            </CustomButton>
+            <Button onClick={loadBooks} disabled={loading}>
+                {loading ? "Loading..." : "Show me some titles"}
+            </Button>
             <div className="bookCardContainer">
-                {bookCards}
+                {books.map((book, index) => (
+                    <div key={index} className="bookCard">
+                        <Link to={`/bookDetails/${book.key.split('/').pop()}`}>
+                            <img src={`https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg`} alt={book.title} className="bookCover"/>
+                            <div className="bookTitle">{book.title}</div>
+                        </Link>
+                    </div>
+                ))}
             </div>
         </div>
     );

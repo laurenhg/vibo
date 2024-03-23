@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const BookDetail = () => {
+const BookInfo = () => {
     const [bookDetails, setBookDetails] = useState(null);
     const { id } = useParams();
     const navigate = useNavigate();
@@ -13,12 +13,13 @@ const BookDetail = () => {
                 const workResponse = await axios.get(`https://openlibrary.org/works/${id}.json`);
                 const workDetails = workResponse.data;
 
+
                 // Assuming subjects might be better retrieved from the work details
                 // directly rather than editions if available
                 const subjects = workDetails.subjects ? workDetails.subjects.join(', ') : 'Subjects information unavailable';
 
                 const authorDetailsPromises = workDetails.authors.map(author =>
-                    axios.get(`https://openlibrary.org${author.author.key}.json`)
+                    axios.get(`https://openlibrary.org${author.key}.json`) // Fixed the author key
                 );
                 const authorsDetails = await Promise.all(authorDetailsPromises);
 
@@ -64,4 +65,4 @@ const BookDetail = () => {
     );
 };
 
-export default BookDetail;
+export default BookInfo;
