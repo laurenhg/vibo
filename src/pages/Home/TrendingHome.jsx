@@ -1,6 +1,6 @@
 import React from 'react';
 import Navigation from "../../components/Navigation/Navigation.jsx";
-import FetchRandomNewBooks from "./FetchRandomNewBooks.jsx";
+import FetchRandomNewBooksHome from "./FetchRandomNewBooksHome.jsx";
 import bookshelf from '../../assets/bookshelf.png'
 
 function TrendingHome () {
@@ -8,7 +8,7 @@ function TrendingHome () {
         <div className="trending-home-container">
             {/*<Navigation/>*/}
             <main className="fetch-random-new-titles">
-            <FetchRandomNewBooks/>
+            <FetchRandomNewBooksHome/>
             </main>
             {/*<Footer>*/}
             {/*    <p>This is a footer</p>*/}

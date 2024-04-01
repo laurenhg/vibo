@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import openBook from "../assets/icons8-open-book-30.png"
+import openBook from "../../../untitled/src/assets/icons8-open-book-30.png"
 
 function InputField () {
     return (

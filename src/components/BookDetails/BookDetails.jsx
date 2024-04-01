@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from "../button/Button.jsx";
 
@@ -7,7 +7,7 @@ const BookDetails = () => {
     const { workId } = useParams();
     const [details, setDetails] = useState(null);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate(); // For programmatically navigating
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchBookDetails = async () => {
@@ -43,7 +43,7 @@ const BookDetails = () => {
     }, [workId]);
 
     const handleBack = () => {
-        navigate('/TrendingHome'); // Adjust the route as necessary
+        navigate(-1);
     };
 
     const handleAddToShelf = () => {

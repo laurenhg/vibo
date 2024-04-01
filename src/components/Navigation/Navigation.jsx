@@ -1,8 +1,8 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import './Navigation.css';
-import avatarIcon from "../../assets/avatarIcon.png";
-import logoImage from '../../assets/ViBo.png';
+import avatarIcon from "../../../../untitled/src/assets/avatarIcon.png";
+import logoImage from '../../../../untitled/src/assets/ViBo.png';
 
 function Navigation () {
     return (

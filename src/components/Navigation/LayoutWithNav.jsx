@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from "./Navigation/Navigation.jsx";
+import Navigation from "./Navigation.jsx";
 
 const LayoutWithNav = ({children}) => {
     return (

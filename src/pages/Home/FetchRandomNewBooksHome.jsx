@@ -1,25 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from "../../components/button/Button.jsx";
-import { fetchAndFilterBooks } from "../../helpers/fetchAndFilterBooks"; // Ensure this path is correct
-import './FetchRandomNewBooks.css'; // Assuming this is where your CSS is defined
+import { fetchAndFilterBooksHome } from "../../helpers/fetchAndFilterBooksHome.js";
+import './FetchRandomNewBooksHome.css';
+import { useBooks } from "./HomeContext/BookContext.jsx";
 
-const FetchRandomNewBooks = () => {
-    const [books, setBooks] = useState([]);
+const FetchRandomNewBooksHome = () => {
     const [loading, setLoading] = useState(false);
+    const { books, setBooks } = useBooks();
+    const [initialLoadDone, setInitialLoadDone] = useState(false);
 
     // Function to load random books
     const loadBooks = async () => {
         setLoading(true);
-        const newBooks = await fetchAndFilterBooks('fiction', 25);
+        const newBooks = await fetchAndFilterBooksHome('fiction', 25);
         setBooks(newBooks);
         setLoading(false);
+        setInitialLoadDone(true);
     };
 
-    // Load books on component mount and when the loadBooks function changes
+
     useEffect(() => {
-        loadBooks();
-    }, []);
+
+        if (books.length === 0 && !initialLoadDone) {
+            loadBooks();
+        }
+    }, [books, initialLoadDone]);
+
+    useEffect(() => {
+        localStorage.setItem('books', JSON.stringify(books));
+    }, [books]);
+
 
     return (
         <div>
@@ -40,4 +51,4 @@ const FetchRandomNewBooks = () => {
     );
 };
 
-export default FetchRandomNewBooks;
+export default FetchRandomNewBooksHome;

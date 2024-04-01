@@ -31,6 +31,12 @@
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bookCard:hover {
+    transform: rotate(2deg); /* Rotate slightly on hover */
+    box-shadow: 0 12px 18px rgba(0,0,0,0.3); /* Change to an elevated shadow on hover */
 }
 
 .bookCover {
