@@ -11,8 +11,8 @@ import FetchRandomNewBooksHome from "./pages/Home/FetchRandomNewBooksHome.jsx";
 import MyBookshelf from "./pages/MyBookshelf/MyBookshelf.jsx";
 import Search from "./pages/Search/Search.jsx";
 import AuthorPortal from "./pages/AuthorPortal/AuthorPortal.jsx";
-import RegistrationPage from "./pages/LoginRegister/Register/RegistrationPage.jsx";
 import BookCard from "./components/BookCard/BookCard.jsx";
+import RegistrationForm from "./pages/LoginRegister/RegistrationForm.jsx";
 
 function App() {
     const handleLogin = async (email, password) => {
@@ -27,7 +27,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<LoginRegister />} />
                     <Route path="/login" element={<LoginRegister />} />
-                    <Route path="/register" element={<RegistrationPage />} />
+                    <Route path="/register" element={<RegistrationForm/>} />
                     <Route path="/TrendingHome" element={<LayoutWithNav><TrendingHome /></LayoutWithNav>} />
                     <Route path="/search" element={<LayoutWithNav><Search /></LayoutWithNav>} />
                     <Route path="/MyBookshelf" element={<LayoutWithNav><MyBookshelf /></LayoutWithNav>} />
