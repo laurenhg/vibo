@@ -1,10 +1,19 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import {useAuth} from "../../pages/LoginRegister/LoginRegisterContext/AuthContext.jsx";
 import './Navigation.css';
 import avatarIcon from "../../../../untitled/src/assets/avatarIcon.png";
 import logoImage from '../../../../untitled/src/assets/ViBo.png';
 
-function Navigation () {
+function Navigation() {
+    const { logout } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();  // Call the logout method from the auth context
+        navigate('/login');  // Redirect to login page after logout
+    };
+
     return (
         <nav className="navigation">
             <div className="navigation-left">
@@ -20,9 +29,10 @@ function Navigation () {
                 <div className="avatar-container">
                     <img src={avatarIcon} alt="avatar" className="avatar"/>
                     <button className="hamburger-menu">☰</button>
+                    <button onClick={handleLogout} className="logout-button">Logout</button>  {/* Add this button */}
                 </div>
             </div>
         </nav>
     );
 }
-export default Navigation
+export default Navigation;

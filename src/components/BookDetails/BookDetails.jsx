@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from "../button/Button.jsx";
+import { useShelf } from "../../pages/MyBookshelf/MyBookShelfContext/MyBookshelfContext.jsx";
 
 const BookDetails = () => {
     const { workId } = useParams();
     const [details, setDetails] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [shelfAction, setShelfAction] = useState(''); // can be 'added', 'removed', or ''
+    const { myBookshelf, addToMyBookshelf, removeFromMyBookshelf } = useShelf();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,16 +20,16 @@ const BookDetails = () => {
                 const workData = workResponse.data;
                 const editionsResponse = await axios.get(`https://openlibrary.org/works/${workId}/editions.json`);
                 const editions = editionsResponse.data.entries;
-                const firstEdition = editions[0] || {};
+                const firstEditionWithCover = editions.find(edition => edition.covers && edition.covers.length > 0) || editions[0] || {};
 
                 const compiledDetails = {
                     title: workData.title,
-                    authors: workData.authors ? workData.authors.map(authorRef => authorRef.name).join(', ') : 'N/A',
-                    coverId: firstEdition.covers ? firstEdition.covers[0] : undefined,
-                    publisher: firstEdition.publishers ? firstEdition.publishers.join(', ') : 'N/A',
-                    publishDate: firstEdition.publish_date,
-                    pageCount: firstEdition.number_of_pages,
-                    language: firstEdition.languages ? firstEdition.languages.map(lang => lang.key.split('/').pop()).join(', ') : 'N/A',
+                    authors: workData.authors ? workData.authors.map(author => author.name).join(', ') : 'N/A',
+                    coverId: firstEditionWithCover.covers ? firstEditionWithCover.covers[0] : undefined,
+                    publisher: firstEditionWithCover.publishers ? firstEditionWithCover.publishers.join(', ') : 'N/A',
+                    publishDate: firstEditionWithCover.publish_date,
+                    pageCount: firstEditionWithCover.number_of_pages,
+                    language: firstEditionWithCover.languages ? firstEditionWithCover.languages.map(lang => lang.key.split('/').pop()).join(', ') : 'N/A',
                     subjects: workData.subjects ? workData.subjects.join(', ') : 'N/A',
                 };
 
@@ -42,13 +45,26 @@ const BookDetails = () => {
         fetchBookDetails();
     }, [workId]);
 
+    useEffect(() => {
+        // Initialize the action based on the book's presence in the shelf
+        setShelfAction(myBookshelf.some(book => book.workId === workId) ? 'added' : '');
+    }, [myBookshelf, workId]);
+
     const handleBack = () => {
         navigate(-1);
     };
 
-    const handleAddToShelf = () => {
-        // Placeholder for functionality to add book to shelf
-        console.log('Add to shelf:', workId);
+    const toggleShelf = () => {
+        if (myBookshelf.some(book => book.workId === workId)) {
+            removeFromMyBookshelf(workId);
+            setShelfAction('removed');
+        } else {
+            if (details) {
+                addToMyBookshelf({ ...details, workId });
+                setShelfAction('added');
+            }
+        }
+        setTimeout(() => setShelfAction(''), 3000); // Clear the action message after 3 seconds
     };
 
     if (loading) return <div>Loading...</div>;
@@ -68,9 +84,11 @@ const BookDetails = () => {
             <p>Subjects: {details.subjects}</p>
             <div style={{ marginTop: '20px' }}>
                 <Button onClick={handleBack}>Back</Button>
-                <Button onClick={handleAddToShelf}>Add to Shelf</Button>
+                <Button onClick={toggleShelf}>{shelfAction === 'added' ? 'Remove from Shelf' : 'Add to Shelf'}</Button>
+                {shelfAction && <p style={{ color: 'green' }}>{shelfAction === 'added' ? 'Book added!' : 'Book removed!'}</p>}
             </div>
         </div>
+
     );
 };
 
