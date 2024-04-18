@@ -1,0 +1,41 @@
+.author-portal-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.author-search-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.author-search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.author-search-button {
+    padding: 10px 20px;
+    background-color: #DE0F3F;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.author-search-button:hover {
+    background-color: #c9302c;
+}
+
+.loading-message {
+    color: #666;
+}
+
+.error-message {
+    color: red;
+}

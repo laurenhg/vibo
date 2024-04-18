@@ -14,7 +14,7 @@ import RegistrationForm from "./pages/LoginRegister/RegistrationForm.jsx";
 import PrivateRoute from "./pages/LoginRegister/Register/PrivateRoute.jsx";
 import { MyBookshelfProvider} from "./pages/MyBookshelf/MyBookShelfContext/MyBookshelfContext.jsx";
 import AuthorCard from "./components/AuthorCard/AuthorCard.jsx";
-
+import ProfileSettings from "./pages/ProfileSettings/ProfileSettings.jsx";
 function App() {
     return (
         <AuthProvider>
@@ -32,6 +32,7 @@ function App() {
                         <Route path="/new-books" element={<PrivateRoute children={<LayoutWithNav><FetchRandomNewBooksHome /></LayoutWithNav>} />} />
                         <Route path="/bookDetails/:workId" element={<PrivateRoute children={<LayoutWithNav><BookDetails /></LayoutWithNav>} />} />
                         <Route path="/book/:id" element={<PrivateRoute children={<LayoutWithNav><BookDetails /></LayoutWithNav>} />} />
+                        <Route path="/profile" element={<PrivateRoute children={<LayoutWithNav><ProfileSettings /></LayoutWithNav>} />} />
                     </Routes>
                 </MyBookshelfProvider>
             </BookProvider>

@@ -42,3 +42,13 @@
 .customButton:hover .buttonText {
     background-color: darkred;
 }
+
+.button-normal {
+    background-color: initial; /* Default background color */
+    color: black; /* Default text color */
+}
+
+.button-added {
+    background-color: deepskyblue; /* Background color for added books */
+    color: white; /* Text color for better readability on dark backgrounds */
+}

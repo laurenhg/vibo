@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './Search.css';
+import bookIcon from '../../../../untitled/src/assets/icons8-open-book-30.png';
 
 const Search = () => {
     const [searchParams, setSearchParams] = useState({
@@ -16,19 +18,18 @@ const Search = () => {
 
     useEffect(() => {
         const storedResults = localStorage.getItem('searchResults');
-        if(storedResults){
+        if (storedResults) {
             setResults(JSON.parse(storedResults));
         }
     }, []);
 
     const handleChange = (e) => {
-        setSearchParams(prevParams => ({ ...prevParams, [e.target.name]: e.target.value }));
-        setErrorMessage('')
+        setSearchParams(prevParams => ({...prevParams, [e.target.name]: e.target.value}));
+        setErrorMessage(''); // Clear error message on change
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (searchParams.author.trim().toLowerCase() === searchParams.excludeAuthor.trim().toLowerCase() && searchParams.author.trim()) {
             setErrorMessage('Please ensure that the "Author" and "Exclude Author" fields do not contain the same name');
             return;
@@ -42,17 +43,25 @@ const Search = () => {
         const query = `https://openlibrary.org/search.json?${queryParts.join('&')}&limit=10`;
 
         try {
-            const { data } = await axios.get(query);
-            const filteredResults = searchParams.excludeAuthor.trim() ?
-                data.docs.filter(book =>
-                    !(book.author_name || []).some(author =>
-                        author.toLowerCase().includes(searchParams.excludeAuthor.toLowerCase())
-                    )
-                ) : data.docs;
-            setResults(filteredResults);
-            localStorage.setItem('searchResults', JSON.stringify(filteredResults));
+            const {data} = await axios.get(query);
+            if (data.docs.length === 0) {
+                setErrorMessage('Sorry, no information found, please try again.');
+                setResults([]);
+                localStorage.removeItem('searchResults');
+            } else {
+                const filteredResults = searchParams.excludeAuthor.trim() ?
+                    data.docs.filter(book =>
+                        !(book.author_name || []).some(author =>
+                            author.toLowerCase().includes(searchParams.excludeAuthor.toLowerCase())
+                        )
+                    ) : data.docs;
+                setResults(filteredResults);
+                localStorage.setItem('searchResults', JSON.stringify(filteredResults));
+                setErrorMessage('');
+            }
         } catch (error) {
             console.error("Error fetching data: ", error);
+            setErrorMessage('Failed to search. Please check your network and try again.');
             setResults([]);
         } finally {
             setLoading(false);
@@ -60,33 +69,47 @@ const Search = () => {
     };
 
     return (
-        <div>
-            {errorMessage && <div style={{ color: 'red', marginBottom: '10px' }}>{errorMessage}</div>}
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="title" placeholder="Title" onChange={handleChange} value={searchParams.title}/>
-                <input type="text" name="subject" placeholder="Subject" onChange={handleChange}
-                       value={searchParams.subject}/>
-                <input type="text" name="keyword" placeholder="Keyword" onChange={handleChange}
-                       value={searchParams.keyword}/>
-                <input type="text" name="author" placeholder="Author" onChange={handleChange}
-                       value={searchParams.author}/>
-                <input type="text" name="excludeAuthor" placeholder="Exclude Author" onChange={handleChange}
-                       value={searchParams.excludeAuthor}/>
+        <div className="search-container">
+            <h2>Search for Books</h2>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+            <form className="search-form" onSubmit={handleSubmit}>
+                {Object.entries(searchParams).map(([key, value]) => (
+                    <div className="form-control" key={key}>
+                        <div className="input-icon">
+                            <img src={bookIcon} alt="Icon" />
+                        </div>
+                        <input
+                            type="text"
+                            name={key}
+                            placeholder={key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')} // Beautifies the field name
+                            onChange={handleChange}
+                            value={value}
+                        />
+                    </div>
+                ))}
                 <button type="submit" disabled={loading}>
                     {loading ? 'Loading...' : 'Search'}
                 </button>
             </form>
-            <div>
-                {results.map((book, index) => (
-                    <div key={index}>
-                    <Link to={`/bookDetails/${book.key.split('/').pop()}`}>
-                            <img src={book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : 'path/to/placeholder.jpg'} alt="Book cover" />
-                        </Link>
-                        <p>Title: {book.title}</p>
-                        <p>Author: {book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
+            {results.length > 0 && (
+                <div className="results-header">
+                    <h3 className="results-title">Results</h3>
+                    <div className="results-line"></div>
+                    <div className="search-results">
+                        {results.map((book, index) => (
+                            <div className="book-card" key={index}>
+                                <Link to={`/bookDetails/${book.key.split('/').pop()}`}>
+                                    <img className="book-cover"
+                                         src={book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : '/path/to/placeholder.jpg'}
+                                         alt="Book Cover"/>
+                                    <p className="book-title">Title: {book.title}</p>
+                                    <p className="book-author">Author: {book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
+                                </Link>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
+                </div>
+            )}
         </div>
     );
 };

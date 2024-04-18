@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import {useAuth} from "../../pages/LoginRegister/LoginRegisterContext/AuthContext.jsx";
+import { useAuth } from "../../pages/LoginRegister/LoginRegisterContext/AuthContext.jsx";
 import './Navigation.css';
-import avatarIcon from "../../../../untitled/src/assets/avatarIcon.png";
 import logoImage from '../../../../untitled/src/assets/ViBo.png';
+import gearIcon from '../../../src/assets/gear.png'; // Make sure the path is correct
 
 function Navigation() {
     const { logout } = useAuth();
@@ -12,6 +12,10 @@ function Navigation() {
     const handleLogout = () => {
         logout();  // Call the logout method from the auth context
         navigate('/login');  // Redirect to login page after logout
+    };
+
+    const handleSettings = () => {
+        navigate('/profile');  // Direct to Profile Settings page
     };
 
     return (
@@ -26,13 +30,13 @@ function Navigation() {
                 <NavLink to="/AuthorPortal" className={({isActive}) => isActive ? 'active-link' : 'default-link'}>Author Portal</NavLink>
             </div>
             <div className="navigation-right">
-                <div className="avatar-container">
-                    <img src={avatarIcon} alt="avatar" className="avatar"/>
-                    <button className="hamburger-menu">☰</button>
-                    <button onClick={handleLogout} className="logout-button">Logout</button>  {/* Add this button */}
-                </div>
+                <button onClick={handleSettings} className="settings-button">
+                    <img src={gearIcon} alt="Settings" className="gear-icon"/>
+                </button>
+                <button onClick={handleLogout} className="logout-button">Logout</button>
             </div>
         </nav>
     );
 }
+
 export default Navigation;

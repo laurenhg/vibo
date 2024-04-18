@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from './LoginRegisterContext/AuthContext.jsx'
+import './Login-register.css'
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');  // Using username for login
@@ -19,20 +20,30 @@ const LoginForm = () => {
     };
 
     return (
-        <div>
-            <h2>Login Form</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="login-username">Username:</label>
-                    <input type="text" id="login-username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <div className="login-section">
+            <div className="rectangle">
+                <div className="top-half">
+                    <h1 className="Vibo"> Vibo </h1>
+                    <p className="tagline"> Find and store books, your way </p>
                 </div>
-                <div>
-                    <label htmlFor="login-password">Password:</label>
-                    <input type="password" id="login-password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <div className="bottom-half">
+                    <h2>Login</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label htmlFor="login-username">Username:</label>
+                            <input type="text" id="login-username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        </div>
+                        <div>
+                            <label htmlFor="login-password">Password:</label>
+                            <input type="password" id="login-password" value={password} onChange={(e) => setPassword(e.target.value)}
+                                   className="login-input"
+                            />
+                        </div>
+                        <button type="submit" className="login-submit">Login</button>
+                    </form>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
                 </div>
-                <button type="submit">Login</button>
-            </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            </div>
         </div>
     );
 };
