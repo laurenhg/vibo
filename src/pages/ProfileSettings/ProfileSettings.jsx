@@ -2,13 +2,14 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import {AuthContext} from "../LoginRegister/LoginRegisterContext/AuthContext.jsx";
+import '../ProfileSettings/ProfileSettings.css'
 
 
 const ProfileSettings = () => {
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
     const [userData, setUserData] = useState({
-        username: user.username || '', // Initialize with the current username if available
+        username: user.username || '',
         currentPassword: '',
         newPassword: '',
         confirmPassword: ''
@@ -45,9 +46,9 @@ const ProfileSettings = () => {
     };
 
     return (
-        <div>
+        <div className="profile-settings-container">
             <h2>Profile Settings</h2>
-            <div>
+            <div className="form-group">
                 <label>Username:</label>
                 <input
                     type="text"
@@ -57,7 +58,7 @@ const ProfileSettings = () => {
                     onChange={handleInputChange}
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label>Current Password:</label>
                 <input
                     type="password"
@@ -67,7 +68,7 @@ const ProfileSettings = () => {
                     onChange={handleInputChange}
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label>New Password:</label>
                 <input
                     type="password"
@@ -77,7 +78,7 @@ const ProfileSettings = () => {
                     onChange={handleInputChange}
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label>Confirm New Password:</label>
                 <input
                     type="password"
@@ -87,7 +88,7 @@ const ProfileSettings = () => {
                     onChange={handleInputChange}
                 />
             </div>
-            <button onClick={updatePassword}>Update Password</button>
+            <button className="update-button" onClick={updatePassword}>Update Password</button>
         </div>
     );
 };
