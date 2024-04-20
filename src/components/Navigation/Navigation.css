@@ -41,6 +41,11 @@
 
 }
 
+.welcome-message {
+    color: black;
+margin-right: 20px;
+font-weight: bold;
+}
 .logout-button {
     margin-top: 10px; /* Adjust the margin */
     padding: 5px 10px;

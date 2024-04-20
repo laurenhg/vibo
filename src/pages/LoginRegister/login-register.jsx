@@ -8,18 +8,15 @@ import {useAuth} from "./LoginRegisterContext/AuthContext.jsx";
 import './Login-register.css'
 
 
-function LoginRegister () {
+function LoginRegister() {
     return (
         <div className="welcome-container">
             <div className="login-container">
-                <LoginForm onLogin={(email, password) => console.log (email, password)}/>
+                <LoginForm/>
             </div>
             <p className="centered-text">
                 Don't have an account? <Link to="/register">Register here</Link>.
             </p>
-            {/*<div className="registration-section">*/}
-            {/*    <RegistrationForm onRegister={(email, password) => console.log(email, password)}/>*/}
-            {/*</div>*/}
             <div>
                 <img src={bookshelf} alt="abstract bookshelf" className="centered-image" />
             </div>

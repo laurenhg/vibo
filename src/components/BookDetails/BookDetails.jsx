@@ -97,11 +97,12 @@ const BookDetails = () => {
             {details ? (
                 <div className="book-details">
                     {details.coverId && (
-                        <img className="book-cover" src={`https://covers.openlibrary.org/b/id/${details.coverId}-M.jpg`}
-                             alt={`${details.title} cover`}/>
+                        <div className="book-cover-container">
+                            <img className="book-cover" src={`https://covers.openlibrary.org/b/id/${details.coverId}-M.jpg`} alt={`${details.title} cover`} />
+                        </div>
                     )}
                     <div className="book-info">
-                        <h1>{details.title || 'N/A'}</h1>
+                        <h2>{details.title || 'N/A'}</h2>
                         <p>Authors: {details.authors || 'N/A'}</p>
                         <p>Page Count: {details.pageCount || 'N/A'}</p>
                         <p>Published in: {details.publishDate || 'N/A'}</p>

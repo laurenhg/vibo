@@ -3,10 +3,10 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from "../../pages/LoginRegister/LoginRegisterContext/AuthContext.jsx";
 import './Navigation.css';
 import logoImage from '../../../../untitled/src/assets/ViBo.png';
-import gearIcon from '../../../src/assets/gear.png'; // Make sure the path is correct
+import gearIcon from '../../../src/assets/gear.png';
 
 function Navigation() {
-    const { logout } = useAuth();
+    const { user, logout } = useAuth();  // Destructure user and logout from context
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -30,6 +30,7 @@ function Navigation() {
                 <NavLink to="/AuthorPortal" className={({isActive}) => isActive ? 'active-link' : 'default-link'}>Author Portal</NavLink>
             </div>
             <div className="navigation-right">
+                {user && <span className="welcome-message">Welcome, {user.sub}!</span>}  {/* Changed from user.username to user.sub */}
                 <button onClick={handleSettings} className="settings-button">
                     <img src={gearIcon} alt="Settings" className="gear-icon"/>
                 </button>

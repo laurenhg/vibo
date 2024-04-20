@@ -61,7 +61,6 @@
     text-align: left; /* Aligns the header to the left */
     margin-top: 20px;
     color: gray;
-
 }
 
 .results-title {
@@ -82,30 +81,44 @@
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s; /* Added proper transitions */
 }
 
 .book-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 18px rgba(0,0,0,0.3);
 }
+
 .book-card a,
-.book-card a:visited {
-    text-decoration: none; /* Ensures there is no underline by default */
-    color: black; /* Text color is black by default */
+.book-card a:visited,
+.book-card a:link { /* Added :link to ensure all link states are covered */
+    text-decoration: none; /* No underline */
+    color: black; /* Ensures color consistency */
 }
 
 .book-card a:hover {
-    text-decoration: underline; /* Underline on hover */
-    color: #DE0F3F; /* Text color changes to red on hover */
+    text-decoration: underline; /* Only underline on hover */
+    color: #DE0F3F; /* Color change on hover */
 }
 
 .book-card .book-title,
 .book-card .book-author {
     margin-top: 10px;
-    text-decoration: none; /* Ensuring no text decoration is applied */
+    overflow: hidden; /* Ensures text does not overflow its container */
+    text-overflow: ellipsis; /* Adds ellipsis if text is too long */
+    white-space: nowrap; /* Keeps text in a single line */
+    font-weight: 600;
+    color: inherit; /* Inherits color from parent a tag */
 }
 
-/* Additional specific targeting might be required depending on other styles */
-.book-title, .book-author {
-    text-decoration: none; /* Reinforce no underline */
+.book-card a,
+.book-card a:visited,
+.book-card a:link {
+    text-decoration: none;  /* Ensures there is no underline by default */
+    color: black;  /* Ensures the text color is black by default */
+}
+
+.book-card a:hover {
+    text-decoration: none;  /* Prevents underline on hover */
+    color: #DE0F3F;  /* Changes text color to Indian Red on hover */
 }

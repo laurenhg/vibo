@@ -10,10 +10,11 @@
 }
 
 .search-results {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* This will manage spacing between the cards */
     margin-top: 20px;
+    gap: 20px; /* Creates space between the flex items */
 }
 
 .book-card {
@@ -23,11 +24,21 @@
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1 1 200px;
+    max-width: 180px;  // Consistent width for all cards
+display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
 }
 
 .book-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 18px rgba(0,0,0, 0.3);
+}
+
+.book-card:hover .book-title {
+    color: indianred;  // Changes the color of the title when the card is hovered over
 }
 
 .book-cover {
@@ -39,11 +50,17 @@
 
 .book-title {
     margin-top: 10px;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    line-height: 1.2em;
+    height: 3.6em;  // Adjust height based on line-height to fit exactly 3 lines
+word-wrap: break-word;
+    text-align: center;
     font-weight: 600;
-    cursor: pointer; /* Add cursor pointer for clickable effect */
 }
 
 .remove-button {
@@ -58,4 +75,42 @@
 
 .remove-button:hover {
     background-color: skyblue;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .bookshelf-container {
+        padding: 10px;
+    }
+
+    .search-results {
+        gap: 10px;
+    }
+
+    .book-card {
+        padding: 10px;
+        max-width: 100%; /* Full width on smaller screens */
+    }
+
+    .book-cover {
+        margin-bottom: 5px;
+    }
+
+    .book-title {
+        font-size: 14px; /* Smaller font size for smaller screens */
+    }
+
+    .remove-button {
+        padding: 5px 10px; /* Smaller padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .book-card {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Less pronounced shadow */
+    }
+
+    .book-title {
+        font-size: 12px; /* Even smaller font size for very small screens */
+    }
 }

@@ -14,15 +14,19 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const initializeAuth = async () => {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('token');  // Ensure this line is not inside a block where 'token' isn't accessible
+            console.log("Token from storage:", token); // This should directly follow the declaration above
+
             if (token) {
                 try {
                     const decoded = jwtDecode(token);
-                    setUser({ ...decoded, token }); // Assuming decoded JWT has user details
+                    console.log("Decoded token data:", decoded); // Log the decoded token data
+                    setUser(decoded); // Store only the decoded data in the Context
                     setStatus('done');
                 } catch (error) {
                     console.error('Token decoding failed:', error);
                     localStorage.removeItem('token'); // Remove corrupt token
+                    setStatus('done');
                 }
             } else {
                 setStatus('done');
@@ -31,7 +35,6 @@ export const AuthProvider = ({ children }) => {
 
         initializeAuth();
     }, []);
-
     const register = async (username, email, password) => {
         try {
             const response = await axios.post('https://api.datavortex.nl/vibo/users', {
@@ -43,14 +46,18 @@ export const AuthProvider = ({ children }) => {
                 }
             });
 
+            console.log("login response:", response.data);
+
             if (response.status !== 201) {
                 throw new Error('Registration failed');
             }
 
             const { token } = response.data;
+            console.log("JWT token recieved:", token);
             localStorage.setItem('token', token);
-            setUser({ ...jwtDecode(token), token });
-            navigate('/TrendingHome'); // Change this to navigate to the TrendingHome page after registration
+            setUser(jwtDecode(token)); // Update context with user info from the decoded token
+            console.log("Decoded user data on login:", decodedUser);
+            navigate('/TrendingHome');
         } catch (error) {
             console.error('Registration error:', error);
             throw error;
@@ -69,23 +76,17 @@ export const AuthProvider = ({ children }) => {
                 }
             });
 
-            console.log("API login response:", response.data);  // Log the API response
-
             if (response.status !== 200) {
                 throw new Error('Login failed');
             }
 
             const { jwt: token } = response.data;
-            if (!token || typeof token !== 'string') {
-                throw new Error("Invalid token received from API");
-            }
-
             localStorage.setItem('token', token);
-            setUser({ ...jwtDecode(token), token });
-            navigate('/TrendingHome');  // Ensure this navigates to the TrendingHome page
+            setUser(jwtDecode(token)); // Update context with user info from the decoded token
+            navigate('/TrendingHome');
         } catch (error) {
             console.error('Login error:', error);
-            throw error;  // Rethrow to handle it in the form
+            throw error;
         }
     };
 
