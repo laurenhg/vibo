@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {useAuth} from "../LoginRegister/LoginRegisterContext/AuthContext.jsx";
 import './Search.css';
 import bookIcon from '../../../../untitled/src/assets/icons8-open-book-30.png';
 
 const Search = () => {
+    const { user } = useAuth(); // Get user from AuthContext
     const [searchParams, setSearchParams] = useState({
         title: '',
         subject: '',
@@ -17,11 +19,15 @@ const Search = () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
-        const storedResults = localStorage.getItem('searchResults');
-        if (storedResults) {
-            setResults(JSON.parse(storedResults));
+        // Construct a user-specific key for localStorage
+        const resultsKey = user ? `searchResults-${user.sub}` : null;
+        if (resultsKey) {
+            const storedResults = localStorage.getItem(resultsKey);
+            if (storedResults) {
+                setResults(JSON.parse(storedResults));
+            }
         }
-    }, []);
+    }, [user]);
 
     const handleChange = (e) => {
         setSearchParams(prevParams => ({...prevParams, [e.target.name]: e.target.value}));
@@ -47,7 +53,7 @@ const Search = () => {
             if (data.docs.length === 0) {
                 setErrorMessage('Sorry, no information found, please try again.');
                 setResults([]);
-                localStorage.removeItem('searchResults');
+                localStorage.removeItem(`searchResults-${user ? user.sub : 'guest'}`);
             } else {
                 const filteredResults = searchParams.excludeAuthor.trim() ?
                     data.docs.filter(book =>
@@ -56,7 +62,7 @@ const Search = () => {
                         )
                     ) : data.docs;
                 setResults(filteredResults);
-                localStorage.setItem('searchResults', JSON.stringify(filteredResults));
+                localStorage.setItem(`searchResults-${user ? user.sub : 'guest'}`, JSON.stringify(filteredResults));
                 setErrorMessage('');
             }
         } catch (error) {

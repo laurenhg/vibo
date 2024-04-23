@@ -1,13 +1,15 @@
 import React from 'react';
-import Navigation from "./Navigation.jsx";
+import Navigation from './Navigation.jsx';
+import Footer from "../../pages/Footer/Footer.jsx";
 
-const LayoutWithNav = ({children}) => {
+const LayoutWithNav = ({ children }) => {
     return (
-        <>
-        <Navigation />
-            <div>{children} </div>
-            </>
+        <div className="layout">
+            <Navigation />
+            <main>{children}</main>
+            <Footer />
+        </div>
     );
-}
+};
 
-export default LayoutWithNav
+export default LayoutWithNav;

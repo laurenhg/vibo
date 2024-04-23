@@ -4,7 +4,7 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    /*border-bottom: 1px solid #ccc; !* Thin line under the section *!*/
+
 }
 
 .book-details {
@@ -18,28 +18,47 @@
     margin: 20px 0;
 }
 
-.book-cover {
-    flex: 0 0 200px; /* Set a specific width for the image */
-    height: auto; /* Allow the height to adjust proportionally */
-    margin-right: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+.book-cover-info {
+    display: flex;
+    align-items: flex-start; /* Aligns items at the start vertically */
+    margin-bottom: 20px; /* Space below the whole block */
 }
 
+.book-cover-container {
+    flex: 0 0 200px; /* Fixed width for the cover */
+    margin-right: 20px; /* Space between the cover and the info */
+}
+
+.book-cover {
+    width: 100%; /* Full width of the container */
+    height: auto; /* Height adjusts automatically */
+    object-fit: cover; /* Ensures the image covers the area nicely */
+}
 
 .book-info {
-    flex: 1 1 auto;
-    padding-left: 20px;
-    font-weight: bolder;
+    flex: 1; /* Takes remaining space */
+    display: flex;
+    flex-direction: column; /* Stacks info vertically */
+    justify-content: center; /* Centers information vertically within the area */
 }
 
 .book-info h2 {
-    margin-top: 0;
-    color: black;
+    margin: 0 0 5px 0; /* Small margin for spacing, remove margin-top for compact look */
+    color: #DE0F3F; /* Ensures text is black */
 }
 
 .book-info p {
-    margin: 0;
+    color: black;
+    margin: 0 0 5px 0;
+    font-weight: bolder;
 }
+    /*.book-info h2 {*/
+/*    font-size: 20px; !* Slightly larger text for the title *!*/
+/*}}*/
+
+/*.book-info p {*/
+/*    margin: 0;*/
+/*}*/
 
 .book-details-section {
     margin-top: 20px;
