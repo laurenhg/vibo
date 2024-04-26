@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from "../../pages/LoginRegister/LoginRegisterContext/AuthContext.jsx";
+import { useAuth } from "../Authentication/AuthContext.jsx";
 import './Navigation.css';
 import logoImage from '../../../../untitled/src/assets/ViBo.png';
 import gearIcon from '../../../src/assets/gear.png';

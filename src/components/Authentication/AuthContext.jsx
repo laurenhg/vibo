@@ -35,6 +35,9 @@ export const AuthProvider = ({ children }) => {
 
         initializeAuth();
     }, []);
+
+
+
     const register = async (username, email, password) => {
         try {
             const response = await axios.post('https://api.datavortex.nl/vibo/users', {
@@ -103,6 +106,7 @@ export const AuthProvider = ({ children }) => {
         register,
         login,
         logout
+
     };
 
     return (

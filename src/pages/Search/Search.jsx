@@ -1,77 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import {useAuth} from "../LoginRegister/LoginRegisterContext/AuthContext.jsx";
+import BookCard from "../../components/BookCard/BookCard.jsx";
+// import { Link } from 'react-router-dom';
+import {useAuth} from "../../components/Authentication/AuthContext.jsx";
+import UseSearchHook from "./UseSearchHook.jsx";
 import './Search.css';
+
 import bookIcon from '../../../../untitled/src/assets/icons8-open-book-30.png';
+import subjectIcon from '../../assets/shapes.png'
+import keywordIcon from '../../assets/unicorn.png'
+import includeAuthorIcon from '../../assets/user.png'
+import excludeAuthorIcon from '../../assets/userempty.png'
 
 const Search = () => {
-    const { user } = useAuth(); // Get user from AuthContext
-    const [searchParams, setSearchParams] = useState({
-        title: '',
-        subject: '',
-        keyword: '',
-        author: '',
-        excludeAuthor: '',
-    });
-    const [results, setResults] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+    const { user } = useAuth();
+    const {
+        searchParams,
+        handleChange,
+        handleSubmit,
+        results,
+        loading,
+        errorMessage
+    } = UseSearchHook();
 
-    useEffect(() => {
-        // Construct a user-specific key for localStorage
-        const resultsKey = user ? `searchResults-${user.sub}` : null;
-        if (resultsKey) {
-            const storedResults = localStorage.getItem(resultsKey);
-            if (storedResults) {
-                setResults(JSON.parse(storedResults));
-            }
-        }
-    }, [user]);
-
-    const handleChange = (e) => {
-        setSearchParams(prevParams => ({...prevParams, [e.target.name]: e.target.value}));
-        setErrorMessage(''); // Clear error message on change
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (searchParams.author.trim().toLowerCase() === searchParams.excludeAuthor.trim().toLowerCase() && searchParams.author.trim()) {
-            setErrorMessage('Please ensure that the "Author" and "Exclude Author" fields do not contain the same name');
-            return;
-        }
-        setLoading(true);
-        let queryParts = [];
-        if (searchParams.title) queryParts.push(`title=${encodeURIComponent(searchParams.title)}`);
-        if (searchParams.keyword) queryParts.push(`q=${encodeURIComponent(searchParams.keyword)}`);
-        if (searchParams.author) queryParts.push(`author=${encodeURIComponent(searchParams.author)}`);
-        if (searchParams.subject) queryParts.push(`subject=${encodeURIComponent(searchParams.subject)}`);
-        const query = `https://openlibrary.org/search.json?${queryParts.join('&')}&limit=10`;
-
-        try {
-            const {data} = await axios.get(query);
-            if (data.docs.length === 0) {
-                setErrorMessage('Sorry, no information found, please try again.');
-                setResults([]);
-                localStorage.removeItem(`searchResults-${user ? user.sub : 'guest'}`);
-            } else {
-                const filteredResults = searchParams.excludeAuthor.trim() ?
-                    data.docs.filter(book =>
-                        !(book.author_name || []).some(author =>
-                            author.toLowerCase().includes(searchParams.excludeAuthor.toLowerCase())
-                        )
-                    ) : data.docs;
-                setResults(filteredResults);
-                localStorage.setItem(`searchResults-${user ? user.sub : 'guest'}`, JSON.stringify(filteredResults));
-                setErrorMessage('');
-            }
-        } catch (error) {
-            console.error("Error fetching data: ", error);
-            setErrorMessage('Failed to search. Please check your network and try again.');
-            setResults([]);
-        } finally {
-            setLoading(false);
-        }
+    const iconMap = {
+        title: bookIcon,
+        subject: subjectIcon,
+        keyword: keywordIcon,
+        author: includeAuthorIcon,
+        excludeAuthor: excludeAuthorIcon,
     };
 
     return (
@@ -82,12 +39,12 @@ const Search = () => {
                 {Object.entries(searchParams).map(([key, value]) => (
                     <div className="form-control" key={key}>
                         <div className="input-icon">
-                            <img src={bookIcon} alt="Icon" />
+                            <img src={iconMap[key]} alt={`${key} icon`} />
                         </div>
                         <input
                             type="text"
                             name={key}
-                            placeholder={key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')} // Beautifies the field name
+                            placeholder={key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}
                             onChange={handleChange}
                             value={value}
                         />
@@ -103,15 +60,7 @@ const Search = () => {
                     <div className="results-line"></div>
                     <div className="search-results">
                         {results.map((book, index) => (
-                            <div className="book-card" key={index}>
-                                <Link to={`/bookDetails/${book.key.split('/').pop()}`}>
-                                    <img className="book-cover"
-                                         src={book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : '/path/to/placeholder.jpg'}
-                                         alt="Book Cover"/>
-                                    <p className="book-title">Title: {book.title}</p>
-                                    <p className="book-author">Author: {book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
-                                </Link>
-                            </div>
+                            <BookCard key={index} book={book} />
                         ))}
                     </div>
                 </div>

@@ -1,0 +1,16 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100vh; /* Set height to full viewport height */
+}
+
+.centered-text {
+    text-align: center;
+    margin-left: auto; /* Center the text horizontally */
+    margin-top: -8rem;
+    font-size: 18px;
+    font-weight: bolder;
+    color:  #392E3D;
+}

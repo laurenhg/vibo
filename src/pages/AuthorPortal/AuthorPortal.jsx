@@ -18,6 +18,7 @@ const AuthorPortal = () => {
     return (
         <div className="author-portal-container">
             <h2>Author Portal</h2>
+            <p> Enter an author's name to learn more about them!</p>
             <div className="author-search-form">
                 <input
                     type="text"

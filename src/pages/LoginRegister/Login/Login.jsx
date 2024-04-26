@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useAuth } from './LoginRegisterContext/AuthContext.jsx'
-import './Login-register.css'
+import { useAuth } from '../../../components/Authentication/AuthContext.jsx'
+import './Login.css'
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');  // Using username for login

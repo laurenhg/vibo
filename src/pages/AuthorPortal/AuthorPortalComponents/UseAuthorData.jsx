@@ -1,34 +1,42 @@
 
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import {AuthContext} from "../../../components/Authentication/AuthContext.jsx";
 
 const useAuthorData = () => {
+    const { user } = useContext(AuthContext);
     const [name, setName] = useState('');
     const [authorData, setAuthorData] = useState(null);
     const [works, setWorks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
+    // Generate unique keys based on the user's identifier
+    const authorNameKey = user ? `authorName-${user.sub}` : 'authorName-guest';
+    const authorDataKey = user ? `authorData-${user.sub}` : 'authorData-guest';
+    const worksDataKey = user ? `worksData-${user.sub}` : 'worksData-guest';
+
     useEffect(() => {
-        const storedName = sessionStorage.getItem('authorName');
-        const storedAuthorData = sessionStorage.getItem('authorData');
-        const storedWorks = sessionStorage.getItem('worksData');
+        const storedName = sessionStorage.getItem(authorNameKey);
+        const storedAuthorData = sessionStorage.getItem(authorDataKey);
+        const storedWorks = sessionStorage.getItem(worksDataKey);
 
         if (storedName && storedAuthorData && storedWorks) {
             setName(storedName);
             setAuthorData(JSON.parse(storedAuthorData));
             setWorks(JSON.parse(storedWorks));
         }
-    }, []);
+    }, [authorNameKey, authorDataKey, worksDataKey]);
 
     const fetchAuthorDetails = async (authorKey) => {
         try {
             const response = await axios.get(`https://openlibrary.org/authors/${authorKey}.json`);
             setAuthorData(response.data);
-            sessionStorage.setItem('authorData', JSON.stringify(response.data));
+            sessionStorage.setItem(authorDataKey, JSON.stringify(response.data));
         } catch (error) {
             console.error('Failed to fetch author details:', error);
+            setError('Failed to fetch author details');
         }
     };
 
@@ -36,9 +44,10 @@ const useAuthorData = () => {
         try {
             const response = await axios.get(`https://openlibrary.org/authors/${authorKey}/works.json?limit=25`);
             setWorks(response.data.entries || []);
-            sessionStorage.setItem('worksData', JSON.stringify(response.data.entries || []));
+            sessionStorage.setItem(worksDataKey, JSON.stringify(response.data.entries || []));
         } catch (error) {
             console.error('Failed to fetch works by author:', error);
+            setError('Failed to fetch works');
         }
     };
 
@@ -53,21 +62,21 @@ const useAuthorData = () => {
                 const authorKey = authorDetails.key.replace('/authors/', '');
                 await fetchAuthorDetails(authorKey);
                 await fetchWorksByAuthor(authorKey);
-                sessionStorage.setItem('authorName', name);
+                sessionStorage.setItem(authorNameKey, name);
             } else {
                 setAuthorData(null);
                 setWorks([]);
                 setError('No author found with that name.');
-                sessionStorage.removeItem('authorData');
-                sessionStorage.removeItem('worksData');
+                sessionStorage.removeItem(authorDataKey);
+                sessionStorage.removeItem(worksDataKey);
             }
         } catch (error) {
             console.error('Failed to search author:', error);
             setError('Failed to search for author. Please try again.');
             setAuthorData(null);
             setWorks([]);
-            sessionStorage.removeItem('authorData');
-            sessionStorage.removeItem('worksData');
+            sessionStorage.removeItem(authorDataKey);
+            sessionStorage.removeItem(worksDataKey);
         }
         setLoading(false);
     };

@@ -1,6 +1,6 @@
 import React from 'react';
 import Navigation from './Navigation.jsx';
-import Footer from "../../pages/Footer/Footer.jsx";
+import Footer from "../Footer/Footer.jsx";
 
 const LayoutWithNav = ({ children }) => {
     return (

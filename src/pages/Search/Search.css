@@ -10,6 +10,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+
 }
 
 .form-control {
@@ -17,6 +18,8 @@
     align-items: center;
     width: 100%;
     max-width: 400px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 8px;
 }
 
 .input-icon {
@@ -34,9 +37,10 @@
 
 .search-form input[type="text"] {
     flex-grow: 1;
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     padding: 10px;
     border-radius: 0;
+    border: none;
 }
 
 .search-form button {
@@ -48,6 +52,7 @@
     cursor: pointer;
     border: none;
     transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .search-results {
@@ -75,50 +80,60 @@
     margin-top: -10px; /* Adjusts vertical position to overlap with the title */
 }
 
-.book-card {
-    text-align: center;
-    padding: 15px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s; /* Added proper transitions */
-}
+/*.book-card {*/
+/*    text-align: center;*/
+/*    padding: 15px;*/
+/*    background-color: white;*/
+/*    border-radius: 5px;*/
+/*    box-shadow: 0 4px 6px rgba(0,0,0,0.1);*/
+/*    transition: transform 0.3s, box-shadow 0.3s; !* Added proper transitions *!*/
+/*}*/
 
-.book-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 18px rgba(0,0,0,0.3);
-}
+/*.book-card:hover {*/
+/*    transform: translateY(-5px);*/
+/*    box-shadow: 0 12px 18px rgba(0,0,0,0.3);*/
+/*}*/
 
-.book-card a,
-.book-card a:visited,
-.book-card a:link { /* Added :link to ensure all link states are covered */
-    text-decoration: none; /* No underline */
-    color: black; /* Ensures color consistency */
-}
+/*.book-card a,*/
+/*.book-card a:visited,*/
+/*.book-card a:link { !* Added :link to ensure all link states are covered *!*/
+/*    text-decoration: none; !* No underline *!*/
+/*    color: black; !* Ensures color consistency *!*/
+/*}*/
 
-.book-card a:hover {
-    text-decoration: underline; /* Only underline on hover */
-    color: #DE0F3F; /* Color change on hover */
-}
+/*.book-card a:hover {*/
+/*    text-decoration: underline; !* Only underline on hover *!*/
+/*    color: #DE0F3F; !* Color change on hover *!*/
+/*}*/
 
-.book-card .book-title,
-.book-card .book-author {
-    margin-top: 10px;
-    overflow: hidden; /* Ensures text does not overflow its container */
-    text-overflow: ellipsis; /* Adds ellipsis if text is too long */
-    white-space: nowrap; /* Keeps text in a single line */
-    font-weight: 600;
-    color: inherit; /* Inherits color from parent a tag */
-}
+/*.book-card .book-title,*/
+/*.book-card .book-author {*/
+/*    margin-top: 10px;*/
+/*    overflow: hidden; !* Ensures text does not overflow its container *!*/
+/*    text-overflow: ellipsis; !* Adds ellipsis if text is too long *!*/
+/*    white-space: nowrap; !* Keeps text in a single line *!*/
+/*    font-weight: 600;*/
+/*    color: inherit; !* Inherits color from parent a tag *!*/
+/*}*/
 
-.book-card a,
-.book-card a:visited,
-.book-card a:link {
-    text-decoration: none;  /* Ensures there is no underline by default */
-    color: black;  /* Ensures the text color is black by default */
-}
+/*.book-card a,*/
+/*.book-card a:visited,*/
+/*.book-card a:link {*/
+/*    text-decoration: none;  !* Ensures there is no underline by default *!*/
+/*    color: black;  !* Ensures the text color is black by default *!*/
+/*}*/
 
-.book-card a:hover {
-    text-decoration: none;  /* Prevents underline on hover */
-    color: #DE0F3F;  /* Changes text color to Indian Red on hover */
-}
+/*.book-card a:hover {*/
+/*    text-decoration: none;  !* Prevents underline on hover *!*/
+/*    color: #DE0F3F;  !* Changes text color to Indian Red on hover *!*/
+/*}*/
+
+/*.book-cover {*/
+/*    width: 100%;*/
+/*    max-height: 200px; !* Set a maximum height for the cover *!*/
+/*    object-fit: contain; !* Fit the entire image inside the container *!*/
+/*    margin-bottom: 10px;*/
+/*    display: block; !* Ensure block-level display for proper centering *!*/
+/*    margin-left: auto; !* Center the image horizontally *!*/
+/*    margin-right: auto;*/
+/*}*/

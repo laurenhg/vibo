@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { AuthProvider } from "./pages/LoginRegister/LoginRegisterContext/AuthContext.jsx";
+import { AuthProvider } from "./components/Authentication/AuthContext.jsx";
 import { BookProvider } from "./pages/Home/HomeContext/BookContext.jsx";
 import LoginRegister from "./pages/LoginRegister/login-register.jsx";
 import TrendingHome from "./pages/Home/TrendingHome.jsx";
@@ -10,8 +10,8 @@ import FetchRandomNewBooksHome from "./pages/Home/FetchRandomNewBooksHome.jsx";
 import MyBookshelf from "./pages/MyBookshelf/MyBookshelf.jsx";
 import Search from "./pages/Search/Search.jsx";
 import AuthorPortal from "./pages/AuthorPortal/AuthorPortal.jsx";
-import RegistrationForm from "./pages/LoginRegister/RegistrationForm.jsx";
-import PrivateRoute from "./pages/LoginRegister/Register/PrivateRoute.jsx";
+import RegistrationForm from "./pages/LoginRegister/Register/RegistrationForm.jsx";
+import PrivateRoute from "./components/Authentication/PrivateRoute.jsx";
 import { MyBookshelfProvider} from "./pages/MyBookshelf/MyBookShelfContext/MyBookshelfContext.jsx";
 import AuthorCard from "./components/AuthorCard/AuthorCard.jsx";
 import ProfileSettings from "./pages/ProfileSettings/ProfileSettings.jsx";

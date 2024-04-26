@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from "../../components/button/Button.jsx";
 import { fetchAndFilterBooksHome } from "../../helpers/fetchAndFilterBooksHome.js";
-import './FetchRandomNewBooksHome.css';
+// import './FetchRandomNewBooksHome.css';
+import '../../components/BookCard/BookCard.css'
 import { useBooks } from "./HomeContext/BookContext.jsx";
 
 const FetchRandomNewBooksHome = () => {
@@ -37,12 +38,12 @@ const FetchRandomNewBooksHome = () => {
             <Button onClick={loadBooks} disabled={loading}>
                 {loading ? "Loading..." : "Show me some titles"}
             </Button>
-            <div className="bookCardContainer">
+            <div className="book-card-container">
                 {books.map((book, index) => (
-                    <div key={index} className="bookCard">
+                    <div key={index} className="book-card">
                         <Link to={`/bookDetails/${book.key.split('/').pop()}`}>
-                            <img src={`https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg`} alt={book.title} className="bookCover"/>
-                            <div className="bookTitle">{book.title}</div>
+                            <img src={`https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg`} alt={book.title} className="book-cover"/>
+                            <div className="book-title">{book.title}</div>
                         </Link>
                     </div>
                 ))}
