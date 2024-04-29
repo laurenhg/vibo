@@ -6,7 +6,7 @@ import BookCoverInfo from "./BookDetailsComponents/BookCoverInfo.jsx";
 import BookDetailsSection from "./BookDetailsComponents/BookDetailsSection.jsx";
 import BookDescription from "./BookDetailsComponents/BookDescription.jsx";
 import ShelfActionButtons from "./BookDetailsComponents/ShelfActionButtons.jsx";
-import './BookDetails.css';
+import styles from '../BookDetails/BookDetails.module.css'
 
 const BookDetails = () => {
     const { workId } = useParams();
@@ -15,6 +15,8 @@ const BookDetails = () => {
     const [shelfAction, setShelfAction] = useState('');
     const { myBookshelf, addToMyBookshelf, removeFromMyBookshelf } = useShelf();
     const navigate = useNavigate();
+
+    console.log(styles);
 
     useEffect(() => {
         const fetchBookDetails = async () => {
@@ -82,14 +84,14 @@ const BookDetails = () => {
 
     };
 
-    if (loading) return <div>Loading...</div>;
-    if (!details) return <div>Book details not found.</div>;
+    if (loading) return <div className={styles.bookDetailsContainer}>Loading...</div>;
+    if (!details) return <div className={styles.bookDetailsContainer}>Book details not found.</div>;
 
     return (
-        <div className="book-details-container">
-            <BookCoverInfo details={details} />
-            <BookDetailsSection details={details} />
-            <BookDescription description={details.description} />
+        <div className={styles.bookDetailsContainer}>
+            <BookCoverInfo details={details} styles={styles} />
+            <BookDetailsSection details={details} styles={styles} />
+            <BookDescription description={details.description}  styles={styles} />
             <ShelfActionButtons handleBack={handleBack} toggleShelf={toggleShelf} shelfAction={shelfAction} />
         </div>
     );

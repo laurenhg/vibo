@@ -1,7 +1,8 @@
 import React from 'react';
 import { useShelf } from "./MyBookShelfContext/MyBookshelfContext.jsx";
 import { useNavigate } from "react-router-dom";
-import './MyBookshelf.css';
+import styles from '../MyBookshelf/MyBookshelf.module.css'
+
 
 
 

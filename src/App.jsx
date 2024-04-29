@@ -6,7 +6,6 @@ import LoginRegister from "./pages/LoginRegister/login-register.jsx";
 import TrendingHome from "./pages/Home/TrendingHome.jsx";
 import LayoutWithNav from "./components/Navigation/LayoutWithNav.jsx";
 import BookDetails from "./components/BookDetails/BookDetails.jsx";
-import FetchRandomNewBooksHome from "./pages/Home/FetchRandomNewBooksHome.jsx";
 import MyBookshelf from "./pages/MyBookshelf/MyBookshelf.jsx";
 import Search from "./pages/Search/Search.jsx";
 import AuthorPortal from "./pages/AuthorPortal/AuthorPortal.jsx";
@@ -29,7 +28,7 @@ function App() {
                         <Route path="/MyBookshelf" element={<PrivateRoute children={<LayoutWithNav><MyBookshelf /></LayoutWithNav>} />} />
                         <Route path="/AuthorPortal" element={<PrivateRoute children={<LayoutWithNav><AuthorPortal /></LayoutWithNav>} />} />
                         <Route path="/authors/:authorId" element={<LayoutWithNav><AuthorCard /></LayoutWithNav>} />
-                        <Route path="/new-books" element={<PrivateRoute children={<LayoutWithNav><FetchRandomNewBooksHome /></LayoutWithNav>} />} />
+                        <Route path="/new-books" element={<PrivateRoute children={<LayoutWithNav><TrendingHome /></LayoutWithNav>} />} />
                         <Route path="/bookDetails/:workId" element={<PrivateRoute children={<LayoutWithNav><BookDetails /></LayoutWithNav>} />} />
                         <Route path="/book/:id" element={<PrivateRoute children={<LayoutWithNav><BookDetails /></LayoutWithNav>} />} />
                         <Route path="/profile" element={<PrivateRoute children={<LayoutWithNav><ProfileSettings /></LayoutWithNav>} />} />

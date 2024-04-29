@@ -1,7 +1,7 @@
 import React from 'react';
 import CustomButton from "../../button/Button.jsx";
 
-const ShelfActionButtons = ({ handleBack, toggleShelf, shelfAction }) => (
+const ShelfActionButtons = ({ handleBack, toggleShelf, shelfAction}) => (
     <div style={{marginTop: '20px'}}>
         <CustomButton onClick={handleBack} className="button-normal">Back</CustomButton>
         <CustomButton onClick={toggleShelf} className={shelfAction === 'added' ? 'button-added' : 'button-normal'}>

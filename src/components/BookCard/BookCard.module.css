@@ -1,19 +1,10 @@
-.book-card-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-    justify-content: center;
-    margin-top:20px
-}
-
-
-.book-card {
+.bookCard {
     flex: 1 1 200px;
     text-align: center;
     margin: 20px;
-    width:180px;
+    width: 180px;
     padding: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     background-color: white;
     flex-direction: column;
@@ -22,19 +13,19 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.book-card:hover {
+.bookCard:hover {
     transform: rotate(5deg);
-    box-shadow: 0 12px 18px rgba(0,0,0,0.3);
+    box-shadow: 0 12px 18px rgba(0, 0, 0, 0.3);
 }
 
-.book-cover {
+.bookCover {
     width: 100%;
     height: auto;
     object-fit: cover;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
-.book-title {
+.bookTitle {
     margin-top: 10px;
     width: 100%;
     display: -webkit-box;
@@ -49,15 +40,16 @@
     font-weight: 600;
 }
 
-.book-card a {
+.bookCard a {
     text-decoration: none;
     color: black;
     cursor: pointer;
 }
 
-.book-card a:hover {
+.bookCard a:hover {
     color: indianred;
 }
+
 
 @media (max-width: 768px) {
     .book-card-container{

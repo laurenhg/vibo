@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../BookCard/BookCard.css'
+import styles from '../../components/BookCard/BookCard.module.css';
+
 
 
 const BookCard = ({ book }) => {
@@ -11,10 +12,10 @@ const BookCard = ({ book }) => {
         : '/path/to/default.jpg';
 
     return (
-        <div className="book-card">
+        <div className={styles.bookCard}>
             <Link to={`/bookDetails/${bookKey}`}>
-                <img src={coverImage} alt={book.title} className="book-cover" />
-                <div className="book-title">{book.title}</div>
+                <img src={coverImage} alt={book.title} className={styles.bookCover} />
+                <div className={styles.bookTitle}>{book.title}</div>
             </Link>
         </div>
     );
