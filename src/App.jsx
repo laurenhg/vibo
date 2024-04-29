@@ -1,56 +1,43 @@
 import React from 'react';
-import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from "./components/Authentication/AuthContext.jsx";
+import { BookProvider } from "./pages/Home/HomeContext/BookContext.jsx";
 import LoginRegister from "./pages/LoginRegister/login-register.jsx";
-import "../src/App.css";
 import TrendingHome from "./pages/Home/TrendingHome.jsx";
-import Navigation from "./components/Navigation/Navigation.jsx";
-import LayoutWithNav from "./components/LayoutWithNav.jsx";
-import SearchInput from "./components/SearchInput.jsx";
-import BookInfo from "./components/BookInfo/BookInfo.jsx";
-import FetchRandomNewBooks from "./pages/Home/FetchRandomNewBooks.jsx";
+import LayoutWithNav from "./components/Navigation/LayoutWithNav.jsx";
+import BookDetails from "./components/BookDetails/BookDetails.jsx";
+import FetchRandomNewBooksHome from "./pages/Home/FetchRandomNewBooksHome.jsx";
 import MyBookshelf from "./pages/MyBookshelf/MyBookshelf.jsx";
 import Search from "./pages/Search/Search.jsx";
 import AuthorPortal from "./pages/AuthorPortal/AuthorPortal.jsx";
-function App () {
-    const handleLogin = async (email, password) => {
-        console.log ("Login Attempt with:", email, password);
-    //     Here, implement logic for verifying credentials.
-    //     This could be a call to backend
-    };
+import RegistrationForm from "./pages/LoginRegister/Register/RegistrationForm.jsx";
+import PrivateRoute from "./components/Authentication/PrivateRoute.jsx";
+import { MyBookshelfProvider} from "./pages/MyBookshelf/MyBookShelfContext/MyBookshelfContext.jsx";
+import AuthorCard from "./components/AuthorCard/AuthorCard.jsx";
+import ProfileSettings from "./pages/ProfileSettings/ProfileSettings.jsx";
+function App() {
     return (
-
-            <Routes>
-
-                <Route path="/TrendingHome" element={<LayoutWithNav><TrendingHome /></LayoutWithNav>}/>
-                <Route path="/search" element={<LayoutWithNav><Search/></LayoutWithNav>} />
-                <Route path="/MyBookshelf" element={<LayoutWithNav><MyBookshelf /></LayoutWithNav>} />
-                <Route path="/AuthorPortal" element={<LayoutWithNav><AuthorPortal /></LayoutWithNav>} />
-                <Route path="new-books" element={<LayoutWithNav><FetchRandomNewBooks /></LayoutWithNav>} />
-                <Route path="/" element={<LoginRegister/>}/>
-
-                <Route path="/login" element={<LoginRegister/>}/>
-                <Route path="/book/:id" element={<BookInfo/>} />
-             </Routes>
-
+        <AuthProvider>
+            <BookProvider>
+                <MyBookshelfProvider>
+                    <Routes>
+                        <Route path="/" element={<LoginRegister />} />
+                        <Route path="/login" element={<LoginRegister />} />
+                        <Route path="/register" element={<RegistrationForm />} />
+                        <Route path="/TrendingHome" element={<PrivateRoute children={<LayoutWithNav><TrendingHome /></LayoutWithNav>} />} />
+                        <Route path="/search" element={<PrivateRoute children={<LayoutWithNav><Search /></LayoutWithNav>} />} />
+                        <Route path="/MyBookshelf" element={<PrivateRoute children={<LayoutWithNav><MyBookshelf /></LayoutWithNav>} />} />
+                        <Route path="/AuthorPortal" element={<PrivateRoute children={<LayoutWithNav><AuthorPortal /></LayoutWithNav>} />} />
+                        <Route path="/authors/:authorId" element={<LayoutWithNav><AuthorCard /></LayoutWithNav>} />
+                        <Route path="/new-books" element={<PrivateRoute children={<LayoutWithNav><FetchRandomNewBooksHome /></LayoutWithNav>} />} />
+                        <Route path="/bookDetails/:workId" element={<PrivateRoute children={<LayoutWithNav><BookDetails /></LayoutWithNav>} />} />
+                        <Route path="/book/:id" element={<PrivateRoute children={<LayoutWithNav><BookDetails /></LayoutWithNav>} />} />
+                        <Route path="/profile" element={<PrivateRoute children={<LayoutWithNav><ProfileSettings /></LayoutWithNav>} />} />
+                    </Routes>
+                </MyBookshelfProvider>
+            </BookProvider>
+        </AuthProvider>
     );
-
 }
-//     const handleLogin = (email, password) => {
-//         console.log("Login Attempt with:", email, password);
-//     //     Here write my logic - such as verifying credentials
-//     };
-//     return (
-//         <>
-//             <div>
-//         <Router>
-//             <Routes>
-//                 <Route path="/" element={<LoginForm onLogin={handleLogin} />} />
-//             </Routes>
-//         </Router>
-//
-//             </div>
-//         </>
-//     )
-// }
 
 export default App;

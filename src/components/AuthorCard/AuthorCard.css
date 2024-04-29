@@ -1,0 +1,68 @@
+.author-card-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.author-details {
+    flex: 1;
+    text-align: left;
+}
+
+.author-image {
+    width: 100px;
+    height: 150px;
+    margin-left: 20px;
+    border-radius: 5px;
+    object-fit: cover;
+    order: 2;
+}
+
+.author-details h2, .author-details p {
+    margin: 0 0 10px 0;
+
+}
+
+.author-label {
+    font-weight: bold;
+    color: black;
+}
+
+.author-bio, .author-details p span {
+    font-weight: normal;
+    color: black;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin: 20px 0;
+}
+
+.author-works h3 {
+    color: #DE0F3F;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.author-works ul {
+    list-style: none;
+    padding: 0;
+}
+
+.author-works li a {
+    color: black;
+    text-decoration: none;
+}
+
+.author-works li a:hover {
+    color: #DE0F3F;
+    text-decoration: underline;
+}
