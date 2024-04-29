@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import useAuthorData from "./AuthorPortalComponents/UseAuthorData.jsx";
 import AuthorCard from "../../components/AuthorCard/AuthorCard.jsx";
-import './AuthorPortal.css'; // Make sure the path is correct
+import './AuthorPortal.css';
 
 const AuthorPortal = () => {
     const {

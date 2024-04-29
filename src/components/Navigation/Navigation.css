@@ -15,7 +15,7 @@
 .navigation-right {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center items vertically */
+    align-items: center;
 }
 
 .navigation-links {
@@ -37,7 +37,7 @@
 }
 
 .gear-icon {
-    height: 25px; /* Adjust to match the previous avatar size */
+    height: 25px;
 
 }
 
@@ -47,7 +47,7 @@ margin-right: 20px;
 font-weight: bold;
 }
 .logout-button {
-    margin-top: 10px; /* Adjust the margin */
+    margin-top: 10px;
     padding: 5px 10px;
     background-color: #DE0F3F;
     color: white;

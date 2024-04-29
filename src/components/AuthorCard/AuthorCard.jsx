@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import authorDefault from '../../assets/user.png'; // Ensure this path is correct
-import './AuthorCard.css'; // Make sure CSS path is correct
+import authorDefault from '../../assets/user.png';
+import './AuthorCard.css';
 
 const AuthorCard = ({ author, works }) => {
     const photoUrl = author.photos?.length > 0 ? `https://covers.openlibrary.org/b/id/${author.photos[0]}-M.jpg` : authorDefault;
@@ -12,7 +12,7 @@ const AuthorCard = ({ author, works }) => {
             <div className="author-details">
                 <h2>{author.name}</h2>
                 <p className="author-label">Bio: <span className="author-bio">{getBioText(author.bio)}</span></p>
-                {author.birth_date && <p className="author-label">Birth Date: <span>{author.birth_date}</span></p>}
+                {author.birth_dae && <p className="author-label">Birth Date: <span>{author.birth_date}</span></p>}
                 {author.death_date && <p className="author-label">Death Date: <span>{author.death_date}</span></p>}
                 {author.alternate_names && <p className="author-label">Alternate Names: <span>{author.alternate_names.join(", ")}</span></p>}
                 <hr />

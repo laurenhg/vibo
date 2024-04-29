@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;  /* Ensures the form-group takes the full width */
+    width: 100%;
     margin-bottom: 15px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .form-group input {
-    width: 100%;  /* Ensures inputs take the full width available */
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -40,7 +40,6 @@
 }
 
 .update-button {
-    /*align-self: stretch;  !* Makes the button extend the full width of the container *!*/
     padding: 10px 20px;
     background-color: #DE0F3F;
     color: white;

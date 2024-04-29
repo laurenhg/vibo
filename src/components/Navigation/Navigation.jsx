@@ -6,16 +6,16 @@ import logoImage from '../../../../untitled/src/assets/ViBo.png';
 import gearIcon from '../../../src/assets/gear.png';
 
 function Navigation() {
-    const { user, logout } = useAuth();  // Destructure user and logout from context
+    const { user, logout } = useAuth();
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        logout();  // Call the logout method from the auth context
-        navigate('/login');  // Redirect to login page after logout
+        logout();
+        navigate('/login');
     };
 
     const handleSettings = () => {
-        navigate('/profile');  // Direct to Profile Settings page
+        navigate('/profile');
     };
 
     return (
@@ -30,7 +30,7 @@ function Navigation() {
                 <NavLink to="/AuthorPortal" className={({isActive}) => isActive ? 'active-link' : 'default-link'}>Author Portal</NavLink>
             </div>
             <div className="navigation-right">
-                {user && <span className="welcome-message">Welcome, {user.sub}!</span>}  {/* Changed from user.username to user.sub */}
+                {user && <span className="welcome-message">Welcome, {user.sub}!</span>}
                 <button onClick={handleSettings} className="settings-button">
                     <img src={gearIcon} alt="Settings" className="gear-icon"/>
                 </button>

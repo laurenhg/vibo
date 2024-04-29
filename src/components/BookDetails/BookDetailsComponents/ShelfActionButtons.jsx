@@ -7,7 +7,8 @@ const ShelfActionButtons = ({ handleBack, toggleShelf, shelfAction }) => (
         <CustomButton onClick={toggleShelf} className={shelfAction === 'added' ? 'button-added' : 'button-normal'}>
             {shelfAction === 'added' ? 'Remove from Shelf' : 'Add to Shelf'}
         </CustomButton>
-        {shelfAction && <p style={{color: 'green'}}>{shelfAction === 'added' ? 'Book added!' : 'Book removed!'}</p>}
+        {shelfAction === 'added' && <p className="book-added">Book added!</p>}
+        {shelfAction === 'removed' && <p className="book-removed">Book removed!</p>}
     </div>
 );
 

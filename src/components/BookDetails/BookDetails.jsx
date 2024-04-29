@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useShelf } from "../../pages/MyBookshelf/MyBookShelfContext/MyBookshelfContext.jsx";
-import BookCoverInfo from "./BookDetailsComponents/BookCoverInfo.jsx";  // Adjusted import for the combined component
+import BookCoverInfo from "./BookDetailsComponents/BookCoverInfo.jsx";
 import BookDetailsSection from "./BookDetailsComponents/BookDetailsSection.jsx";
 import BookDescription from "./BookDetailsComponents/BookDescription.jsx";
 import ShelfActionButtons from "./BookDetailsComponents/ShelfActionButtons.jsx";
@@ -79,7 +79,7 @@ const BookDetails = () => {
                 setShelfAction('added');
             }
         }
-        setTimeout(() => setShelfAction(''), 3000);
+
     };
 
     if (loading) return <div>Loading...</div>;

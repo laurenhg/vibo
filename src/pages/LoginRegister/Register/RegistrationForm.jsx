@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './RegistrationForm.css'
 import bookshelf from '../../../assets/bookshelf.png'
-import {useAuth} from "../../../components/Authentication/AuthContext.jsx";
+
 
 const RegistrationForm = () => {
     const navigate = useNavigate();
@@ -19,7 +19,6 @@ const RegistrationForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
-        // Also clear errors for specific field when user starts typing
         setErrors(prev => ({ ...prev, [name]: '' }));
     };
 
@@ -40,7 +39,7 @@ const RegistrationForm = () => {
         const formErrors = validateForm();
         if (Object.keys(formErrors).length > 0) {
             setErrors(formErrors);
-            return; // Stop the submission if errors are found
+            return;
         }
 
         try {
@@ -57,7 +56,7 @@ const RegistrationForm = () => {
             }
         } catch (error) {
             if (error.response && error.response.status === 409) {
-                setErrors({ form: 'Username already exists' });
+                setErrors({ form: 'An account with this username already exists' });
             } else {
                 setErrors({ form: 'Failed to register. Please try again.' });
             }
@@ -73,31 +72,31 @@ const RegistrationForm = () => {
                 <div className="form-group">
                     <label htmlFor="registration-username">Username:</label>
                     <input type="text" id="registration-username" name="username" value={formData.username}
-                           onChange={handleChange}/>
+                           onChange={handleChange} placeholder="please enter a username"/>
                     {errors.username && <p className="error-message">{errors.username}</p>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="registration-email">Email:</label>
                     <input type="email" id="registration-email" name="email" value={formData.email}
-                           onChange={handleChange}/>
+                           onChange={handleChange} placeholder="please enter a valid email address"/>
                     {errors.email && <p className="error-message">{errors.email}</p>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="confirm-email">Confirm Email:</label>
                     <input type="email" id="confirm-email" name="confirmEmail" value={formData.confirmEmail}
-                           onChange={handleChange}/>
+                           onChange={handleChange} placeholder="re-enter email address"/>
                     {errors.confirmEmail && <p className="error-message">{errors.confirmEmail}</p>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="registration-password">Password:</label>
                     <input type="password" id="registration-password" name="password" value={formData.password}
-                           onChange={handleChange}/>
+                           onChange={handleChange} placeholder="enter a password of at least 8 characters"/>
                     {errors.password && <p className="error-message">{errors.password}</p>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="confirm-password">Confirm Password:</label>
                     <input type="password" id="confirm-password" name="confirmPassword" value={formData.confirmPassword}
-                           onChange={handleChange}/>
+                           onChange={handleChange} placeholder="re-enter your password"/>
                     {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
                 </div>
                 <button type="submit" className="button-common">Register</button>

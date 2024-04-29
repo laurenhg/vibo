@@ -6,7 +6,7 @@ import './MyBookshelf.css';
 
 
 const MyBookshelf = () => {
-    const { myBookshelf, removeFromMyBookshelf } = useShelf(); // Ensure this matches the exported context
+    const { myBookshelf, removeFromMyBookshelf } = useShelf();
     const navigate = useNavigate();
 
     const handleViewDetails = (workId) => {
@@ -18,21 +18,21 @@ const MyBookshelf = () => {
     };
 
     return (
-        <div className="bookshelf-container"> {/* Apply container class */}
-            <h2 className="bookshelf-title">My Bookshelf</h2> {/* Apply title class */}
-            <div className="search-results"> {/* Apply search-results class */}
+        <div className="bookshelf-container">
+            <h2 className="bookshelf-title">My Bookshelf</h2>
+            <div className="search-results">
                 {myBookshelf.map((book, index) => (
-                    <div className="book-card" key={book.workId || index}> {/* Apply book-card class */}
+                    <div className="book-card" key={book.workId || index}>
                         {book.coverId && (
                             <img
                                 src={`https://covers.openlibrary.org/b/id/${book.coverId}-M.jpg`}
                                 alt={book.title}
                                 onClick={() => handleViewDetails(book.workId)}
-                                className="book-cover" // Apply book-cover class
+                                className="book-cover"
                             />
                         )}
-                        <p className="book-title" onClick={() => handleViewDetails(book.workId)}>Title: {book.title}</p> {/* Apply book-title class */}
-                        <button className="remove-button" onClick={() => handleRemoveBook(book.workId)}>Remove</button> {/* Apply remove-button class */}
+                        <p className="book-title" onClick={() => handleViewDetails(book.workId)}>Title: {book.title}</p>
+                        <button className="remove-button" onClick={() => handleRemoveBook(book.workId)}>Remove</button>
                     </div>
                 ))}
             </div>

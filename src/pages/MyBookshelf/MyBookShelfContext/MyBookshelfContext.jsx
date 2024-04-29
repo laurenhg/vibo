@@ -1,44 +1,31 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import {useAuth} from "../../../components/Authentication/AuthContext.jsx";
 
-const MyBookshelfContext = createContext({
-    myBookshelf: [],
-    addToMyBookshelf: () => {},
-    removeFromMyBookshelf: () => {}
-});
+const MyBookshelfContext = createContext();
 
 export const useShelf = () => useContext(MyBookshelfContext);
 
 export const MyBookshelfProvider = ({ children }) => {
-    const { user } = useAuth();  // Get the user from AuthContext
-    const [myBookshelf, setMyBookshelf] = useState([]);
-
-    // Compose a key for localStorage based on the user's identifier
+    const { user } = useAuth();
     const localStorageKey = user ? `myBookshelf-${user.sub}` : 'myBookshelf';
+    const initialBookshelf = () => {
+        const storedData = localStorage.getItem(localStorageKey);
+        return storedData ? JSON.parse(storedData) : [];
+    };
+    const [myBookshelf, setMyBookshelf] = useState(initialBookshelf);
 
     useEffect(() => {
-        console.log("User on load:", user);
-        console.log("Local Storage Key:", localStorageKey);
-        // Load the bookshelf data from localStorage only if a user is logged in
-        const loadBookshelf = () => {
-            const storedData = localStorage.getItem(localStorageKey);
-            if (storedData) {
-                console.log("Loading bookshelf from localStorage:", storedData);
-                setMyBookshelf(JSON.parse(storedData));
-            } else {
-                console.log("No bookshelf data found in localStorage.");
-                setMyBookshelf([]);
-            }
-        };
-        loadBookshelf();
+        console.log("Attempting to load bookshelf...");
+        const storedData = localStorage.getItem(localStorageKey);
+        if (storedData) {
+            console.log(`Bookshelf data found: ${storedData}`);
+            setMyBookshelf(JSON.parse(storedData));
+        }
     }, [user, localStorageKey]);
 
     useEffect(() => {
-        // Save the bookshelf to localStorage whenever it changes, but only if a user is logged in
-        if (user) {
-            console.log("Saving bookshelf to localStorage for key:", localStorageKey, myBookshelf);
-            localStorage.setItem(localStorageKey, JSON.stringify(myBookshelf));
-        }
+        console.log(`Saving bookshelf to localStorage for user ${user?.sub}:`, myBookshelf);
+        localStorage.setItem(localStorageKey, JSON.stringify(myBookshelf));
     }, [myBookshelf, user, localStorageKey]);
 
     const addToMyBookshelf = (book) => {

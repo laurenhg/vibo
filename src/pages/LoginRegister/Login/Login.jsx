@@ -3,19 +3,25 @@ import { useAuth } from '../../../components/Authentication/AuthContext.jsx'
 import './Login.css'
 
 const LoginForm = () => {
-    const [username, setUsername] = useState('');  // Using username for login
+    const [username, setUsername] = useState('');  /
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const { login } = useAuth();  // Destructure the login function from useAuth
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(null);  // Reset error state on new submission
+        setError(null);
         try {
-            await login(username, password);  // Pass username instead of email
+            await login(username, password);
         } catch (error) {
             console.error("Login error:", error);
-            setError(error.message);  // Displaying the error message
+            if (error.response && error.response.status === 401) {
+                setError("Incorrect username or password.");
+            } else if (error.response && error.response.status === 400) {
+                setError("Invalid username or password. Please check your credentials and try again.");
+            } else {
+                setError("An unexpected error occurred. Please try again later.");
+            }
         }
     };
 
@@ -41,9 +47,9 @@ const LoginForm = () => {
                         </div>
                         <button type="submit" className="login-submit">Login</button>
                     </form>
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
                 </div>
             </div>
+            {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
         </div>
     );
 };

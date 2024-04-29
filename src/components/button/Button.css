@@ -48,11 +48,17 @@
 }
 
 .button-normal {
-    background-color: initial; /* Default background color */
-    color: black; /* Default text color */
+    background-color: initial;
+    color: black;
 }
 
 .button-added {
-    background-color: deepskyblue; /* Background color for added books */
-    color: white; /* Text color for better readability on dark backgrounds */
+    background-color: deepskyblue;
+    color: white;
+}
+
+.book-added {
+    text-align: center;
+    color: deepskyblue;
+    font-weight: bolder;
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import Navigation from "../../components/Navigation/Navigation.jsx";
 import FetchRandomNewBooksHome from "./FetchRandomNewBooksHome.jsx";
 import bookshelf from '../../assets/bookshelf.png'
 
@@ -10,9 +9,7 @@ function TrendingHome () {
             <main className="fetch-random-new-titles">
             <FetchRandomNewBooksHome/>
             </main>
-            {/*<Footer>*/}
-            {/*    <p>This is a footer</p>*/}
-            {/*</Footer>*/}
+
         </div>
     );
 }

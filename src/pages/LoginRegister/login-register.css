@@ -1,14 +1,14 @@
 .login-container {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    height: 100vh; /* Set height to full viewport height */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .centered-text {
     text-align: center;
-    margin-left: auto; /* Center the text horizontally */
+    margin-left: auto;
     margin-top: -8rem;
     font-size: 18px;
     font-weight: bolder;

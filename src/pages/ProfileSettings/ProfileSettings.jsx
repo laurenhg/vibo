@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useNavigate } from 'react-router-dom';
 import {AuthContext} from "../../components/Authentication/AuthContext.jsx";
 import '../ProfileSettings/ProfileSettings.css'
 
@@ -38,7 +38,7 @@ const ProfileSettings = () => {
             });
 
             alert('Password updated successfully!');
-            navigate('/TrendingHome'); // Redirect after successful update
+            navigate('/TrendingHome');
         } catch (error) {
             console.error('Failed to update password:', error);
             alert('Failed to update password. Please try again.');

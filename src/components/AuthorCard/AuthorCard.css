@@ -12,16 +12,16 @@
 
 .author-details {
     flex: 1;
-    text-align: left; /* Ensures text is aligned left */
+    text-align: left;
 }
 
 .author-image {
     width: 100px;
     height: 150px;
-    margin-left: 20px; /* Ensure margin is on the left of the image */
+    margin-left: 20px;
     border-radius: 5px;
     object-fit: cover;
-    order: 2; /* Image is visually second */
+    order: 2;
 }
 
 .author-details h2, .author-details p {
@@ -31,12 +31,12 @@
 
 .author-label {
     font-weight: bold;
-    color: black; /* Makes text bold and black */
+    color: black;
 }
 
 .author-bio, .author-details p span {
     font-weight: normal;
-    color: black; /* Details text is lighter and less bold */
+    color: black;
 }
 
 hr {
@@ -47,8 +47,8 @@ hr {
 }
 
 .author-works h3 {
-    color: #DE0F3F; /* Makes section headers bold and black */
-    font-weight: bold; /* Ensures the headers are bold */
+    color: #DE0F3F;
+    font-weight: bold;
     margin-bottom: 10px;
 }
 

@@ -14,18 +14,18 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const initializeAuth = async () => {
-            const token = localStorage.getItem('token');  // Ensure this line is not inside a block where 'token' isn't accessible
-            console.log("Token from storage:", token); // This should directly follow the declaration above
+            const token = localStorage.getItem('token');
+            console.log("Token from storage:", token);
 
             if (token) {
                 try {
                     const decoded = jwtDecode(token);
-                    console.log("Decoded token data:", decoded); // Log the decoded token data
-                    setUser(decoded); // Store only the decoded data in the Context
+                    console.log("Decoded token data:", decoded);
+                    setUser(decoded);
                     setStatus('done');
                 } catch (error) {
                     console.error('Token decoding failed:', error);
-                    localStorage.removeItem('token'); // Remove corrupt token
+                    localStorage.removeItem('token');
                     setStatus('done');
                 }
             } else {
@@ -58,9 +58,9 @@ export const AuthProvider = ({ children }) => {
             const { token } = response.data;
             console.log("JWT token recieved:", token);
             localStorage.setItem('token', token);
-            setUser(jwtDecode(token)); // Update context with user info from the decoded token
+            setUser(jwtDecode(token));
             console.log("Decoded user data on login:", decodedUser);
-            navigate('/TrendingHome');
+            // navigate('/TrendingHome');
         } catch (error) {
             console.error('Registration error:', error);
             throw error;
@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }) => {
 
             const { jwt: token } = response.data;
             localStorage.setItem('token', token);
-            setUser(jwtDecode(token)); // Update context with user info from the decoded token
+            setUser(jwtDecode(token));
             navigate('/TrendingHome');
         } catch (error) {
             console.error('Login error:', error);
@@ -96,7 +96,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('token');
         setUser(null);
-        navigate('/'); // Redirect to the homepage on logout
+        navigate('/');
     };
 
     const authContextValue = {

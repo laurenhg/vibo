@@ -41,20 +41,20 @@ h1 {
 .button-common {
     width: 100%;
     padding: 12px 20px;
-    background-color: #DE0F3F;  /* Vibrant red background */
-    color: white;              /* White text */
+    background-color: #DE0F3F;
+    color: white;
     border: none;
-    border-radius: 5px;        /* Rounded corners */
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .button-common:hover {
-    background-color: #c9302c; /* Darker shade on hover */
+    background-color: #c9302c;
 }
 
 .button-common:disabled {
-    background-color: #ccc;    /* Grayed out when disabled */
+    background-color: #ccc;
     cursor: not-allowed;
 }
 

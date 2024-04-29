@@ -20,31 +20,31 @@
 
 .book-cover-info {
     display: flex;
-    align-items: flex-start; /* Aligns items at the start vertically */
-    margin-bottom: 20px; /* Space below the whole block */
+    align-items: flex-start;
+    margin-bottom: 20px;
 }
 
 .book-cover-container {
-    flex: 0 0 200px; /* Fixed width for the cover */
-    margin-right: 20px; /* Space between the cover and the info */
+    flex: 0 0 200px;
+    margin-right: 20px;
 }
 
 .book-cover {
-    width: 100%; /* Full width of the container */
-    height: auto; /* Height adjusts automatically */
-    object-fit: cover; /* Ensures the image covers the area nicely */
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .book-info {
-    flex: 1; /* Takes remaining space */
+    flex: 1;
     display: flex;
-    flex-direction: column; /* Stacks info vertically */
-    justify-content: center; /* Centers information vertically within the area */
+    flex-direction: column;
+    justify-content: center;
 }
 
 .book-info h2 {
-    margin: 0 0 5px 0; /* Small margin for spacing, remove margin-top for compact look */
-    color: #DE0F3F; /* Ensures text is black */
+    margin: 0 0 5px 0;
+    color: #DE0F3F;
 }
 
 .book-info p {
@@ -52,13 +52,6 @@
     margin: 0 0 5px 0;
     font-weight: bolder;
 }
-    /*.book-info h2 {*/
-/*    font-size: 20px; !* Slightly larger text for the title *!*/
-/*}}*/
-
-/*.book-info p {*/
-/*    margin: 0;*/
-/*}*/
 
 .book-details-section {
     margin-top: 20px;
@@ -90,11 +83,11 @@
 }
 
 .button-normal {
-    background-color: initial; /* Default background color */
-    color: black; /* Default text color */
+    background-color: initial;
+    color: black;
 }
 
 .button-added {
-    background-color: deepskyblue; /* Background color for added books */
-    color: white; /* Text color for better readability on dark backgrounds */
+    background-color: deepskyblue;
+    color: white;
 }

@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import LoginForm from "./Login/Login.jsx";
-import RegistrationForm from "./Register/RegistrationForm.jsx";
 import {Link} from "react-router-dom";
 import '../../components/Navigation/Navigation.css'
 import bookshelf from "../../assets/bookshelf.png"
-import {useAuth} from "../../components/Authentication/AuthContext.jsx";
 import '../LoginRegister/login-register.css'
 
 

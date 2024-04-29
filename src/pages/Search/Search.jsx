@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import BookCard from "../../components/BookCard/BookCard.jsx";
-// import { Link } from 'react-router-dom';
 import {useAuth} from "../../components/Authentication/AuthContext.jsx";
 import UseSearchHook from "./UseSearchHook.jsx";
 import './Search.css';
