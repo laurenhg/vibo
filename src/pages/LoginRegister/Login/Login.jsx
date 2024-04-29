@@ -3,7 +3,7 @@ import { useAuth } from '../../../components/Authentication/AuthContext.jsx'
 import './Login.css'
 
 const LoginForm = () => {
-    const [username, setUsername] = useState('');  /
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const { login } = useAuth();
