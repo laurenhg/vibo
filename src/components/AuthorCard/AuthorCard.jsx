@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import authorDefault from '../../assets/user.png';
-import './AuthorCard.css';
+import './AuthorCard.css'
 
 const AuthorCard = ({ author, works }) => {
     const photoUrl = author.photos?.length > 0 ? `https://covers.openlibrary.org/b/id/${author.photos[0]}-M.jpg` : authorDefault;

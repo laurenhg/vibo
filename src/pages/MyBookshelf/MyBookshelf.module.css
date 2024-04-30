@@ -1,75 +1,27 @@
-.bookshelf-container {
+.bookshelfContainer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
 }
 
-.bookshelf-title {
+.bookshelfTitle {
     margin-bottom: 40px;
+   text-align: center;
+    font-size: 1.7rem;
+    color: black;
+
 }
 
-.search-results {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 20px;
+.searchResults {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the column width based on available space */
     gap: 20px;
+    justify-content: center; /* Center the grid horizontally */
+    margin-top: 20px;
 }
 
-.book-card {
-    text-align: center;
-    padding: 15px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex: 1 1 200px;
-    max-width: 180px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
-}
 
-.book-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 18px rgba(0,0,0, 0.3);
-}
-
-.book-card:hover .book-title {
-    color: indianred;
-}
-
-.book-cover {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    margin-bottom:10px;
-}
-
-.book-title {
-    margin-top: 10px;
-    width: 100%;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
-    line-height: 1.2em;
-    height: 4.6em;
-    text-align: center;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.book-title span {
-    display: block;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
 
 .remove-button {
     background-color: deepskyblue;
@@ -95,27 +47,9 @@
         gap: 10px;
     }
 
-    .book-card {
-        padding: 10px;
-        max-width: 100%;
-    }
-
-    .book-cover {
-        margin-bottom: 5px;
-    }
-
 
     .remove-button {
         padding: 5px 10px;
     }
 }
 
-@media (max-width: 480px) {
-    .book-card {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .book-title {
-        font-size: 12px;
-    }
-}

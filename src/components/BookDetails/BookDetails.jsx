@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useShelf } from "../../pages/MyBookshelf/MyBookShelfContext/MyBookshelfContext.jsx";
+import styles from '../BookDetails/BookDetails.module.css'
 import BookCoverInfo from "./BookDetailsComponents/BookCoverInfo.jsx";
 import BookDetailsSection from "./BookDetailsComponents/BookDetailsSection.jsx";
 import BookDescription from "./BookDetailsComponents/BookDescription.jsx";
 import ShelfActionButtons from "./BookDetailsComponents/ShelfActionButtons.jsx";
-import styles from '../BookDetails/BookDetails.module.css'
+
 
 const BookDetails = () => {
     const { workId } = useParams();
@@ -89,10 +90,11 @@ const BookDetails = () => {
 
     return (
         <div className={styles.bookDetailsContainer}>
-            <BookCoverInfo details={details} styles={styles} />
-            <BookDetailsSection details={details} styles={styles} />
-            <BookDescription description={details.description}  styles={styles} />
-            <ShelfActionButtons handleBack={handleBack} toggleShelf={toggleShelf} shelfAction={shelfAction} />
+            <BookCoverInfo details={details} styles={styles}/>
+            <hr className={styles.horizontalLine}/>
+            <BookDetailsSection details={details} styles={styles}/>
+            <BookDescription description={details.description} styles={styles}/>
+            <ShelfActionButtons handleBack={handleBack} toggleShelf={toggleShelf} shelfAction={shelfAction}/>
         </div>
     );
 };

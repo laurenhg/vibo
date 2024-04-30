@@ -11,6 +11,8 @@ const BookCard = ({ book }) => {
     const coverImage = book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
         : '/path/to/default.jpg';
 
+    console.log('Book:', book);
+
     return (
         <div className={styles.bookCard}>
             <Link to={`/bookDetails/${bookKey}`}>

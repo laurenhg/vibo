@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Button from "../../components/button/Button.jsx";
 import { fetchAndFilterBooksHome } from "../../helpers/fetchAndFilterBooksHome.js";
@@ -8,29 +8,38 @@ import trendingStyles from './TrendingHome.module.css'; // Styles for TrendingHo
 function TrendingHome() {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [initialLoadDone, setInitialLoadDone] = useState(false);
 
-    const loadBooks = async () => {
+    const fetchBooks = useCallback(async () => {
         setLoading(true);
-        const newBooks = await fetchAndFilterBooksHome('fiction', 25);
-        setBooks(newBooks);
-        setLoading(false);
-        setInitialLoadDone(true);
-    };
-
-    useEffect(() => {
-        if (books.length === 0 && !initialLoadDone) {
-            loadBooks();
+        try {
+            const newBooks = await fetchAndFilterBooksHome('fiction', 25);
+            setBooks(newBooks);
+            localStorage.setItem('books', JSON.stringify(newBooks));
+        } catch (error) {
+            console.error('Error fetching books:', error);
+        } finally {
+            setLoading(false);
         }
-    }, [books, initialLoadDone]);
+    }, []);
 
     useEffect(() => {
-        localStorage.setItem('books', JSON.stringify(books));
-    }, [books]);
+        const storedBooks = localStorage.getItem('books');
+        if (storedBooks) {
+            setBooks(JSON.parse(storedBooks));
+        } else {
+            fetchBooks();
+        }
+    }, [fetchBooks]);
+
+    const memoizedFetchBooks = useMemo(() => fetchBooks, [fetchBooks]); // Memoize fetchBooks function
+
+    const handleRefresh = () => {
+        fetchBooks();
+    };
 
     return (
         <div className={trendingStyles.trendingHomeContainer}>
-            <Button onClick={loadBooks} disabled={loading}>
+            <Button onClick={handleRefresh} disabled={loading}>
                 {loading ? "Loading..." : "Show me some titles"}
             </Button>
             <div className={trendingStyles.bookCardContainer}>
