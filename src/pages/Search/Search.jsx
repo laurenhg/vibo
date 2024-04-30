@@ -3,7 +3,7 @@ import axios from 'axios';
 import BookCard from "../../components/BookCard/BookCard.jsx";
 import {useAuth} from "../../components/Authentication/AuthContext.jsx";
 import UseSearchHook from "./UseSearchHook.jsx";
-import './Search.css';
+import styles from './Search.module.css'
 
 import bookIcon from '../../../../untitled/src/assets/icons8-open-book-30.png';
 import subjectIcon from '../../assets/shapes.png'
@@ -31,13 +31,13 @@ const Search = () => {
     };
 
     return (
-        <div className="search-container">
+        <div className={styles.searchContainer}>
             <h2>Search for Books</h2>
-            {errorMessage && <div className="error-message">{errorMessage}</div>}
-            <form className="search-form" onSubmit={handleSubmit}>
+            {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
+            <form className={styles.searchForm} onSubmit={handleSubmit}>
                 {Object.entries(searchParams).map(([key, value]) => (
-                    <div className="form-control" key={key}>
-                        <div className="input-icon">
+                    <div className={styles.formControl} key={key}>
+                        <div className={styles.inputIcon}>
                             <img src={iconMap[key]} alt={`${key} icon`} />
                         </div>
                         <input
@@ -54,10 +54,10 @@ const Search = () => {
                 </button>
             </form>
             {results.length > 0 && (
-                <div className="results-header">
-                    <h3 className="results-title">Results</h3>
-                    <div className="results-line"></div>
-                    <div className="search-results">
+                <div className={styles.resultsHeader}>
+                    <h3 className={styles.resultsTitle}>Results</h3>
+                    <div className={styles.resultsLine}></div>
+                    <div className={styles.searchResults}>
                         {results.map((book, index) => (
                             <BookCard key={index} book={book} />
                         ))}

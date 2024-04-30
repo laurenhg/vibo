@@ -1,4 +1,4 @@
-.login-container {
+.loginContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,7 +6,7 @@
     height: 100vh;
 }
 
-.centered-text {
+.centeredText {
     text-align: center;
     margin-left: auto;
     margin-top: -8rem;

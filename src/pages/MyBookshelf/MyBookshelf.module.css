@@ -23,7 +23,7 @@
 
 
 
-.remove-button {
+.removeButton {
     background-color: deepskyblue;
     color: white;
     border: none;
@@ -33,22 +33,22 @@
     transition: background-color 0.3s ease;
 }
 
-.remove-button:hover {
+.removeButton:hover {
     background-color: skyblue;
 }
 
 /* Media Queries */
 @media (max-width: 768px) {
-    .bookshelf-container {
+    .bookshelfContainer {
         padding: 10px;
     }
 
-    .search-results {
+    .searchResults {
         gap: 10px;
     }
 
 
-    .remove-button {
+    .removeButton {
         padding: 5px 10px;
     }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useAuth } from '../../../components/Authentication/AuthContext.jsx'
-import './Login.css'
+import { useAuth } from '../../../components/Authentication/AuthContext.jsx';
+import styles from './Login.module.css';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -26,26 +26,24 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="login-section">
-            <div className="rectangle">
-                <div className="top-half">
-                    <h1 className="Vibo"> Vibo </h1>
-                    <p className="tagline"> Find and store books, your way </p>
+        <div className={styles.loginSection}>
+            <div className={styles.rectangle}>
+                <div className={styles.topHalf}>
+                    <h1 className={styles.vibo}> Vibo </h1>
+                    <p className={styles.tagline}> Find and store books, your way </p>
                 </div>
-                <div className="bottom-half">
+                <div className={styles.bottomHalf}>
                     <h2>Login</h2>
                     <form onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="login-username">Username:</label>
-                            <input type="text" id="login-username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                            <input type="text" id="login-username" value={username} onChange={(e) => setUsername(e.target.value)} className={styles.loginInput} />
                         </div>
                         <div>
                             <label htmlFor="login-password">Password:</label>
-                            <input type="password" id="login-password" value={password} onChange={(e) => setPassword(e.target.value)}
-                                   className="login-input"
-                            />
+                            <input type="password" id="login-password" value={password} onChange={(e) => setPassword(e.target.value)} className={styles.loginInput} />
                         </div>
-                        <button type="submit" className="login-submit">Login</button>
+                        <button type="submit" className={styles.loginSubmit}>Login</button>
                     </form>
                 </div>
             </div>
