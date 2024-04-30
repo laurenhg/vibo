@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './RegistrationForm.css'
+import styles from './RegistrationForm.module.css'
 import bookshelf from '../../../assets/bookshelf.png'
 
 
@@ -64,43 +64,43 @@ const RegistrationForm = () => {
     };
 
     return (
-        <div className="registration-form-container">
+        <div className={styles.registrationFormContainer}>
             <h1> ViBo </h1>
-            <img src={bookshelf} alt="Register Banner" className="banner-image"/>
+            <img src={bookshelf} alt="Register Banner" className={styles.bannerImage}/>
             <h2>Register for a Vibo Account</h2>
-            <form onSubmit={handleSubmit} className="registration-form">
-                <div className="form-group">
+            <form onSubmit={handleSubmit} className={styles.registrationForm}>
+                <div className={styles.formGroup}>
                     <label htmlFor="registration-username">Username:</label>
                     <input type="text" id="registration-username" name="username" value={formData.username}
                            onChange={handleChange} placeholder="please enter a username"/>
-                    {errors.username && <p className="error-message">{errors.username}</p>}
+                    {errors.username && <p className={styles.errorMessage}>{errors.username}</p>}
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label htmlFor="registration-email">Email:</label>
                     <input type="email" id="registration-email" name="email" value={formData.email}
                            onChange={handleChange} placeholder="please enter a valid email address"/>
-                    {errors.email && <p className="error-message">{errors.email}</p>}
+                    {errors.email && <p className={styles.errorMessage}>{errors.email}</p>}
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label htmlFor="confirm-email">Confirm Email:</label>
                     <input type="email" id="confirm-email" name="confirmEmail" value={formData.confirmEmail}
                            onChange={handleChange} placeholder="re-enter email address"/>
                     {errors.confirmEmail && <p className="error-message">{errors.confirmEmail}</p>}
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label htmlFor="registration-password">Password:</label>
                     <input type="password" id="registration-password" name="password" value={formData.password}
                            onChange={handleChange} placeholder="enter a password of at least 8 characters"/>
-                    {errors.password && <p className="error-message">{errors.password}</p>}
+                    {errors.password && <p className={styles.errorMessage}>{errors.password}</p>}
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label htmlFor="confirm-password">Confirm Password:</label>
                     <input type="password" id="confirm-password" name="confirmPassword" value={formData.confirmPassword}
                            onChange={handleChange} placeholder="re-enter your password"/>
-                    {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
+                    {errors.confirmPassword && <p className={styles.errorMessage}>{errors.confirmPassword}</p>}
                 </div>
-                <button type="submit" className="button-common">Register</button>
-                {errors.form && <p className="error-message">{errors.form}</p>}
+                <button type="submit" className={styles.buttonCommon}>Register</button>
+                {errors.form && <p className={styles.errorMessage}>{errors.form}</p>}
             </form>
         </div>
     );
