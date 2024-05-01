@@ -19,14 +19,14 @@ main {
     font-size: 16px;
 }
 
-.footer-content {
+.footerContent {
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
     align-items: center;
 }
 
-.footer-section {
+.footerSection {
     padding: 10px;
     flex: 1; /* Ensures that all sections take up equal width */
     display: flex;
@@ -34,25 +34,25 @@ main {
     justify-content: center;
 }
 
-.footer-section h1, .footer-section h2 {
+.footerSection h1, .footerSection h2 {
     color: #f2f2f2;
 }
 
-.footer-section ul {
+.footerSection ul {
     list-style: none;
 }
 
-.footer-section ul li a {
+.footerSection ul li a {
     color: #ffffff;
     text-decoration: none;
     transition: color 0.3s;
 }
 
-.footer-section ul li a:hover {
+.footerSection ul li a:hover {
     color: #ff9900;
 }
 
-.footer-bottom {
+.footerBottom {
     background-color: skyblue;
     color: #fff;
     text-align: center;
@@ -72,4 +72,3 @@ main {
     transition: color 0.3s;
 }
 
-.socials a:hover

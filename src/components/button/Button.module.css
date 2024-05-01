@@ -47,17 +47,17 @@
     background-color: darkred;
 }
 
-.button-normal {
+.buttonNormal {
     background-color: initial;
     color: black;
 }
 
-.button-added {
+ .buttonAdded {
     background-color: deepskyblue;
     color: white;
 }
 
-.book-added {
+.bookAdded {
     text-align: center;
     color: deepskyblue;
     font-weight: bolder;

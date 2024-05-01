@@ -16,7 +16,7 @@ body {
 
 /* Style headings */
 h1, h2 {
-    color: #DE0F3F;
+    color: var(--color-primary);
     font-weight: bold;
 }
 

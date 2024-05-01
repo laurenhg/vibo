@@ -14,6 +14,7 @@ import PrivateRoute from "./components/Authentication/PrivateRoute.jsx";
 import { MyBookshelfProvider} from "./pages/MyBookshelf/MyBookShelfContext/MyBookshelfContext.jsx";
 import AuthorCard from "./components/AuthorCard/AuthorCard.jsx";
 import ProfileSettings from "./pages/ProfileSettings/ProfileSettings.jsx";
+
 function App() {
     return (
         <AuthProvider>

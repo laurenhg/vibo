@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
 
+    const apiKey = import.meta.env.VITE_API_KEY;
 
     const register = async (username, email, password) => {
         try {
@@ -45,7 +46,7 @@ export const AuthProvider = ({ children }) => {
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-Api-Key': 'vibo:xz3hJ3IPuNIbPbg4lgce'
+                    'X-Api-Key': apiKey
                 }
             });
 
@@ -59,7 +60,7 @@ export const AuthProvider = ({ children }) => {
             console.log("JWT token recieved:", token);
             localStorage.setItem('token', token);
             setUser(jwtDecode(token));
-            console.log("Decoded user data on login:", decodedUser);
+
             // navigate('/TrendingHome');
         } catch (error) {
             console.error('Registration error:', error);
@@ -75,7 +76,7 @@ export const AuthProvider = ({ children }) => {
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-Api-Key': 'vibo:xz3hJ3IPuNIbPbg4lgce'
+                    'X-Api-Key': apiKey
                 }
             });
 

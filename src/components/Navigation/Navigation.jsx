@@ -40,7 +40,7 @@ function Navigation() {
                 <button onClick={handleSettings} className={styles.settingsButton}>
                     <img src={gearIcon} alt="Settings" className={styles.gearIcon}/>
                 </button>
-                <button onClick={handleLogout} className={styles.logoutButton}>"logout-button">Logout</button>
+                <button onClick={handleLogout} className={styles.logoutButton}>Log-out</button>
             </div>
         </nav>
     );
