@@ -1,8 +1,13 @@
 .authorPortalContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    text-align: center;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 .authorPortalContainer h2 {
@@ -11,19 +16,20 @@
 
 .authorSearchForm {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
-    margin-top: 70px;
-
 }
 
 .authorSearchInput {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 5px;
-    width: 18rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 20rem;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .authorSearchButton {
@@ -38,13 +44,15 @@
 }
 
 .authorSearchButton:hover {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-dark); /* Ensure you have this color defined, or replace with a specific color */
 }
 
 .loadingMessage {
     color: #666;
+    text-align: center;
 }
 
 .errorMessage {
     color: var(--color-primary);
+    text-align: center;
 }

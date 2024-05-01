@@ -12,7 +12,7 @@ main {
 
 .footer,
 .footer *{
-    background-color: skyblue;
+    background-color: var(--color-accent);
     color: #f4f4f4;
     text-align: center;
     padding: 10px 20px;
