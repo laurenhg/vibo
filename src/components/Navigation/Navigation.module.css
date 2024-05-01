@@ -72,6 +72,6 @@ font-weight: bold;
 }
 
 .activeLink {
-    color: var(--color-rollover);
+    color: var(--color-primary);
     text-decoration: none;
 }
