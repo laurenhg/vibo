@@ -34,7 +34,7 @@ const MyBookshelf = () => {
                             />
                         )}
                         <p className={bookCardStyles.bookTitle} onClick={() => handleViewDetails(book.workId)}>Title: {book.title}</p>
-                        <button className="remove-button" onClick={() => handleRemoveBook(book.workId)}>Remove</button>
+                        <button className={styles.removeButton} onClick={() => handleRemoveBook(book.workId)}>Remove</button>
                     </div>
                 ))}
             </div>
