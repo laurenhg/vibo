@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import BookCard from "../../components/BookCard/BookCard.jsx";
 import Button from "../../components/button/Button.jsx";
 import styles from './Search.module.css';
-import useBookSearch from "./UseSearchHook.jsx"; // Make sure this is correctly set up for new data structure
+import useBookSearch from "./UseSearchHook.jsx";
 
 import bookIcon from '../../assets/open-book.png'
 import subjectIcon from '../../assets/shapes.png'
@@ -38,9 +38,9 @@ const Search = () => {
                             <img src={iconMap[key]} alt={`${key} icon`}/>
                         </div>
                         <input
-                            {...register(key)}
+                            {...register(key)} // Register the input with react-hook-form
                             placeholder={key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}
-                            className={styles['searchFormInput']} // Make sure this class exists in your CSS or use a different class that does.
+                            className={styles['searchFormInput']}
                             disabled={isSubmitting || loading}
                         />
                     </div>

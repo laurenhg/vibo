@@ -20,7 +20,7 @@
     border: none;
     outline: none;
     background: white;
-    color: white;
+    color: #333333;
 }
 
 .searchForm input[type="text"]::placeholder {
