@@ -12,6 +12,11 @@
   box-sizing: border-box;
 }
 
+img {
+  max-width: 100%; /* Limit the maximum width of images to their container */
+  height: auto; /* Maintain the aspect ratio of images */
+}
+
 body{
   font-family: Degular;
   line-height: 1.5;

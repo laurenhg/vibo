@@ -1,3 +1,8 @@
+body {
+    font-family: "Degular Display", sans-serif;
+}
+
+/* Style the form container */
 .registrationFormContainer {
     display: flex;
     flex-direction: column;
@@ -5,39 +10,54 @@
     justify-content: center;
     min-height: 100vh;
     padding: 20px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+/* Style headings */
+h1, h2 {
     color: #DE0F3F;
-    font-family: "Degular Display" alt = sans-serif;
-    font-weight: bolder;
+    font-weight: bold;
 }
 
- .bannerImage {
-    max-width: 30%;
+/* Style the banner image */
+.bannerImage {
+    max-width: 20rem;
     height: auto;
+    margin-bottom: 20px; /* Add some space below the image */
 }
 
+/* Style the form */
 .registrationForm {
     width: 100%;
     max-width: 360px;
 }
 
+/* Style form groups */
 .formGroup {
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Increase vertical spacing between form fields */
 }
 
+/* Style form labels */
 .formGroup label {
     display: block;
     margin-bottom: 5px;
 }
 
-/*.formGroup input {*/
-/*    width;*/
-/*}*/
+/* Style input fields */
+.formGroup input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
 
+.formGroup input:focus {
+    border-color: #DE0F3F; /* Change border color on focus */
+}
+
+/* Style the registration button */
 .buttonCommon {
     width: 100%;
     padding: 12px 20px;
@@ -58,4 +78,8 @@ h1 {
     cursor: not-allowed;
 }
 
-
+/* Error message styles */
+.errorMessage {
+    color: #c9302c; /* Error message color */
+    margin-top: 5px; /* Add some space above the error message */
+}

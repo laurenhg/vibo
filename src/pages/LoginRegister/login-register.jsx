@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from "./Login/Login.jsx";
 import { Link } from "react-router-dom";
-import '../../components/Navigation/Navigation.css';
+import '../../components/Navigation/Navigation.module.css';
 import bookshelf from "../../assets/bookshelf.png";
 import styles from '../LoginRegister/Login/Login.module.css';
 

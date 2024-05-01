@@ -7,18 +7,18 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.navigation-left {
+.navigationLeft {
     display: flex;
     align-items: center;
 }
 
-.navigation-right {
+.navigationRight {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.navigation-links {
+.navigationLinks {
     display: flex;
     justify-content: flex-end;
     gap: 40px;
@@ -26,27 +26,28 @@
 
 .logo {
     margin-right: 2rem;
-    height: 250px;
+    height:15rem;
+    max-width:15rem;
 }
 
-.settings-button {
+.settingsButton {
     background: none;
     border: none;
     padding: 5px;
     cursor: pointer;
 }
 
-.gear-icon {
+.gearIcon {
     height: 25px;
 
 }
 
-.welcome-message {
+.welcomeMessage {
     color: black;
 margin-right: 20px;
 font-weight: bold;
 }
-.logout-button {
+.logoutButton {
     margin-top: 10px;
     padding: 5px 10px;
     background-color: #DE0F3F;
@@ -56,7 +57,7 @@ font-weight: bold;
     cursor: pointer;
 }
 
-.active-link, .default-link {
+.activeLink, .defaultLink {
     text-decoration: none;
     color: #392E3D;
     font-weight: 600;
@@ -65,11 +66,11 @@ font-weight: bold;
     font-size: 20px;
 }
 
-.active-link:hover, .default-link:hover {
+.activeLink:hover, .defaultLink:hover {
     text-decoration: underline;
 }
 
-.active-link {
+.activeLink {
     color: #DE0F3F;
     text-decoration: none;
 }

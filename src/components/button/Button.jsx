@@ -1,6 +1,6 @@
 import React from 'react';
 import './Button.css';
-import bookIcon from '../../../../untitled/src/assets/icons8-open-book-30.png';
+import bookIcon from '../../assets/open-book.png'
 
 const CustomButton = ({ onClick, children, disabled, className }) => {
     return (

@@ -5,7 +5,7 @@ import {useAuth} from "../../components/Authentication/AuthContext.jsx";
 import UseSearchHook from "./UseSearchHook.jsx";
 import styles from './Search.module.css'
 
-import bookIcon from '../../../../untitled/src/assets/icons8-open-book-30.png';
+import bookIcon from '../../assets/open-book.png'
 import subjectIcon from '../../assets/shapes.png'
 import keywordIcon from '../../assets/unicorn.png'
 import includeAuthorIcon from '../../assets/user.png'
