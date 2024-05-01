@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+import { useForm } from 'react-hook-form';
 import BookCard from "../../components/BookCard/BookCard.jsx";
-import {useAuth} from "../../components/Authentication/AuthContext.jsx";
-import UseSearchHook from "./UseSearchHook.jsx";
-import styles from './Search.module.css'
+import Button from "../../components/button/Button.jsx";
+import styles from './Search.module.css';
+import useBookSearch from "./UseSearchHook.jsx"; // Make sure this is correctly set up for new data structure
 
 import bookIcon from '../../assets/open-book.png'
 import subjectIcon from '../../assets/shapes.png'
@@ -12,15 +12,8 @@ import includeAuthorIcon from '../../assets/user.png'
 import excludeAuthorIcon from '../../assets/userempty.png'
 
 const Search = () => {
-    const { user } = useAuth();
-    const {
-        searchParams,
-        handleChange,
-        handleSubmit,
-        results,
-        loading,
-        errorMessage
-    } = UseSearchHook();
+    const { register, handleSubmit, formState: { isSubmitting } } = useForm();
+    const { results, loading, errorMessage, fetchBooks } = useBookSearch();
 
     const iconMap = {
         title: bookIcon,
@@ -30,28 +23,31 @@ const Search = () => {
         excludeAuthor: excludeAuthorIcon,
     };
 
+    const onSubmit = data => {
+        fetchBooks(data);
+    };
+
     return (
         <div className={styles.searchContainer}>
             <h2>Search for Books</h2>
             {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
-            <form className={styles.searchForm} onSubmit={handleSubmit}>
-                {Object.entries(searchParams).map(([key, value]) => (
+            <form className={styles.searchForm} onSubmit={handleSubmit(onSubmit)}>
+                {Object.keys(iconMap).map(key => (
                     <div className={styles.formControl} key={key}>
                         <div className={styles.inputIcon}>
-                            <img src={iconMap[key]} alt={`${key} icon`} />
+                            <img src={iconMap[key]} alt={`${key} icon`}/>
                         </div>
                         <input
-                            type="text"
-                            name={key}
+                            {...register(key)}
                             placeholder={key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}
-                            onChange={handleChange}
-                            value={value}
+                            className={styles['searchFormInput']} // Make sure this class exists in your CSS or use a different class that does.
+                            disabled={isSubmitting || loading}
                         />
                     </div>
                 ))}
-                <button type="submit" disabled={loading}>
+                <Button type="submit" disabled={isSubmitting || loading}>
                     {loading ? 'Loading...' : 'Search'}
-                </button>
+                </Button>
             </form>
             {results.length > 0 && (
                 <div className={styles.resultsHeader}>
@@ -59,7 +55,7 @@ const Search = () => {
                     <div className={styles.resultsLine}></div>
                     <div className={styles.searchResults}>
                         {results.map((book, index) => (
-                            <BookCard key={index} book={book} />
+                            <BookCard key={index} book={book}/>
                         ))}
                     </div>
                 </div>

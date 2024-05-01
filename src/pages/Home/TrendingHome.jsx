@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Button from "../../components/button/Button.jsx";
 import { fetchAndFilterBooksHome } from "../../helpers/fetchAndFilterBooksHome.js";
-import bookCardStyles from '../../components/BookCard/BookCard.module.css'; // Styles for BookCard
-import trendingStyles from './TrendingHome.module.css'; // Styles for TrendingHome layout
+import bookCardStyles from '../../components/BookCard/BookCard.module.css';
+import trendingStyles from './TrendingHome.module.css';
 
 function TrendingHome() {
     const [books, setBooks] = useState([]);
@@ -31,7 +31,7 @@ function TrendingHome() {
         }
     }, [fetchBooks]);
 
-    const memoizedFetchBooks = useMemo(() => fetchBooks, [fetchBooks]); // Memoize fetchBooks function
+    const memoizedFetchBooks = useMemo(() => fetchBooks, [fetchBooks]);
 
     const handleRefresh = () => {
         fetchBooks();

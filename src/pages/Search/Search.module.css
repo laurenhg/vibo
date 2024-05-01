@@ -13,6 +13,19 @@
 
 }
 
+.searchFormInput {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    background: white;
+    color: white;
+}
+
+.searchForm input[type="text"]::placeholder {
+    color: #aaa;
+}
 .formControl {
     display: flex;
     align-items: center;
@@ -42,7 +55,7 @@
     border: none;
 }
 
-.searchForm button {
+.searchFormButton {
     width: auto;
     padding: 10px 20px;
     background-color: var(--color-primary);
