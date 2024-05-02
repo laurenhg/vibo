@@ -4,7 +4,6 @@ import BookCard from "../../components/BookCard/BookCard.jsx";
 import Button from "../../components/button/Button.jsx";
 import styles from './Search.module.css';
 import useBookSearch from "./UseSearchHook.jsx";
-
 import bookIcon from '../../assets/open-book.png'
 import subjectIcon from '../../assets/shapes.png'
 import keywordIcon from '../../assets/unicorn.png'

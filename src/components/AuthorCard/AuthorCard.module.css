@@ -6,7 +6,7 @@
     align-items: flex-start;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: white;
+    background-color: var(--color-background);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -31,7 +31,7 @@
 
 .authorLabel {
     font-weight: bold;
-    color: black;
+    color: var(--color-text);
 }
 
 .authorBio, .authorDetails p span {
@@ -47,7 +47,7 @@ hr {
 }
 
 .authorWorks h3 {
-    color: #DE0F3F;
+    color: var(--color-primary);
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -58,11 +58,11 @@ hr {
 }
 
 .authorWorks li a {
-    color: black;
+    color: var(--color-text);
     text-decoration: none;
 }
 
 .authorWorks li a:hover {
-    color: #DE0F3F;
+    color: var(--color-primary);
     text-decoration: underline;
 }

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import AuthorCard from "../../components/AuthorCard/AuthorCard.jsx";
 import Button from "../../components/button/Button.jsx";
 import styles from './AuthorPortal.module.css';
-import useAuthorData from "./AuthorPortalComponents/UseAuthorData.jsx"; // Update path as necessary
+import useAuthorData from "./AuthorPortalComponents/UseAuthorData.jsx";
 
 const AuthorPortal = () => {
     const { register, handleSubmit, formState: { isSubmitting } } = useForm();

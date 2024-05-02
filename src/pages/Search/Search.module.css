@@ -19,7 +19,7 @@
     border-radius: 0;
     border: none;
     outline: none;
-    background: white;
+    background: var(--color-background);
     color: #333333;
 }
 
@@ -59,7 +59,7 @@
     width: auto;
     padding: 10px 20px;
     background-color: var(--color-primary);
-    color: white;
+    color: var(--color-background);
     border-radius: 5px;
     cursor: pointer;
     border: none;

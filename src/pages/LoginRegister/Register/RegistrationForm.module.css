@@ -20,31 +20,30 @@ h1, h2 {
     font-weight: bold;
 }
 
-/* Style the banner image */
+
 .bannerImage {
     max-width: 20rem;
     height: auto;
-    margin-bottom: 20px; /* Add some space below the image */
+    margin-bottom: 20px;
 }
 
-/* Style the form */
+
 .registrationForm {
     width: 100%;
     max-width: 360px;
 }
 
-/* Style form groups */
 .formGroup {
-    margin-bottom: 20px; /* Increase vertical spacing between form fields */
+    margin-bottom: 20px;
 }
 
-/* Style form labels */
+
 .formGroup label {
     display: block;
     margin-bottom: 5px;
 }
 
-/* Style input fields */
+
 .formGroup input {
     width: 100%;
     padding: 10px;
@@ -54,15 +53,15 @@ h1, h2 {
 }
 
 .formGroup input:focus {
-    border-color: #DE0F3F; /* Change border color on focus */
+    border-color: var(--color-primary);
 }
 
-/* Style the registration button */
+
 .buttonCommon {
     width: 100%;
     padding: 12px 20px;
-    background-color: #DE0F3F;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-background);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -78,8 +77,8 @@ h1, h2 {
     cursor: not-allowed;
 }
 
-/* Error message styles */
+
 .errorMessage {
-    color: #c9302c; /* Error message color */
-    margin-top: 5px; /* Add some space above the error message */
+    color: #c9302c;
+    margin-top: 5px;
 }

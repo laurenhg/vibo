@@ -53,8 +53,8 @@ main {
 }
 
 .footerBottom {
-    background-color: skyblue;
-    color: #fff;
+    background-color:var(--color-accent);
+    color: var(--color-background);
     text-align: center;
     padding: 10px 0;
     position: relative;

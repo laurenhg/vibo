@@ -6,8 +6,8 @@
 
 .bookCardContainer {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Creates 5 columns */
-    gap: 20px; /* Spacing between grid items */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
 }
 
 .bookCard {
@@ -15,7 +15,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border: 1px solid #ccc; /* Optional, just to make the cards visible */
+    border: 1px solid #ccc;
     padding: 10px;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .bookTitle {
-    font-size: 14px; /* Adjust size as needed */
+    font-size: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

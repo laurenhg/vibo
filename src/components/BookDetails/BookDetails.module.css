@@ -51,7 +51,7 @@
 }
 
 .bookInfoP {
-    color: black;
+    color: var(--color-text);
     margin: 0 0 5px 0;
     font-weight: bolder;
 }
@@ -94,7 +94,7 @@
 
 .buttonNormal {
     background-color: initial;
-    color: black;
+    color: var(--color-text);
 }
 
 .buttonAdded {

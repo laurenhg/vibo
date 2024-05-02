@@ -11,9 +11,9 @@
 .loginContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    height: 100vh; /* Set height to full viewport height */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .loginSection {
@@ -22,7 +22,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 1px; /* Adjusted margin */
+    margin: 1px;
     font-size: 22px;
 }
 
@@ -33,15 +33,12 @@
 }
 
 .bottomHalf {
-    background-color: white;
+    background-color: var(--color-background);
     padding: 20px;
     color: var(--color-primary);
 }
 
-/*!*.loginSection h1.Vibo {*!*/
-/*!*    !*margin-bottom: 10px;*!*!*/
 
-/*}*/
 .loginSection p {
     margin-top: 0;
 }
@@ -73,23 +70,23 @@
     text-align: center;
     font-size: 18px;
     font-weight: bolder;
-    color: white;
-    /*margin-top: 10px;*/
+    color: var(--color-background);
+
 }
 
 .centeredImage {
     display: block;
-    margin: 0 auto; /* Center the image horizontally */
-    max-width: 26%; /* Adjust the maximum width of the image */
-    height: auto; /* Maintain the aspect ratio */
-    max-height: 100px; /* Adjust the maximum height of the image */
+    margin: 0 auto;
+    max-width: 26%;
+    height: auto;
+    max-height: 100px;
 }
 
 .vibo {
     font-weight: bold;
     font-family: "Degular Display", sans-serif;
     font-size: 80px;
-    color: white;
+    color: var(--color-background);
     text-align: center;
     margin: 0;
     padding: 0;
@@ -98,7 +95,7 @@
 
 .loginSubmit {
     background-color: var(--color-primary);
-    color: white;
+    color: var(--color-background);
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -109,6 +106,6 @@
 }
 
 .loginSubmit:hover {
-    background-color: skyblue;
+    background-color: var(--color-accent);
     transition: background-color 0.3s ease;
 }

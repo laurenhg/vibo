@@ -42,12 +42,12 @@
 
 .bookCard a {
     text-decoration: none;
-    color: black;
+    color: var(--color-text);
     cursor: pointer;
 }
 
 .bookCard a:hover {
-    color: indianred;
+    color: var(--color-cardhover);
 }
 
 
