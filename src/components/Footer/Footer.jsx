@@ -1,11 +1,11 @@
 import React from 'react';
-import './Footer.css'
+import styles from '../Footer/Footer.module.css'
 
 const Footer = () => {
     return (
-        <footer className="footer">
+        <footer className={styles.footer}>
 
-            <div className="footer-bottom">
+            <div className={styles.footerBottom}>
                 &copy; 2024 ViBo | Designed by Lauren Gilbert
             </div>
         </footer>

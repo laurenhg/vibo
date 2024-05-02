@@ -1,66 +1,42 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth } from "../../components/Authentication/AuthContext.jsx";
 
-const useSearch = () => {
-    const { user } = useAuth();
-    const [searchParams, setSearchParams] = useState({
-        title: '',
-        subject: '',
-        keyword: '',
-        author: '',
-        excludeAuthor: '',
+const useBookSearch = () => {
+    const [results, setResults] = useState(() => {
+        // Attempt to load stored results from session storage on initialization
+        const savedResults = sessionStorage.getItem('searchResults');
+        return savedResults ? JSON.parse(savedResults) : [];
     });
-    const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
-        // Load search results from local storage when the component mounts
-        const savedResults = localStorage.getItem(`searchResults-${user ? user.sub : 'guest'}`);
-        if (savedResults) {
-            setResults(JSON.parse(savedResults));
-        }
-    }, [user]);
+        // Any time results change, update them in session storage
+        sessionStorage.setItem('searchResults', JSON.stringify(results));
+    }, [results]);
 
-    const handleChange = (e) => {
-        setSearchParams(prevParams => ({...prevParams, [e.target.name]: e.target.value}));
-        setErrorMessage('');
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (searchParams.author.trim().toLowerCase() === searchParams.excludeAuthor.trim().toLowerCase() && searchParams.author.trim()) {
-            setErrorMessage('Please ensure that the "Author" and "Exclude Author" fields do not contain the same name');
-            return;
-        }
+    const fetchBooks = async (searchParams) => {
         setLoading(true);
-        let queryParts = [];
-        if (searchParams.title) queryParts.push(`title=${encodeURIComponent(searchParams.title)}`);
-        if (searchParams.keyword) queryParts.push(`q=${encodeURIComponent(searchParams.keyword)}`);
-        if (searchParams.author) queryParts.push(`author=${encodeURIComponent(searchParams.author)}`);
-        if (searchParams.subject) queryParts.push(`subject=${encodeURIComponent(searchParams.subject)}`);
-        const query = `https://openlibrary.org/search.json?${queryParts.join('&')}&limit=10`;
-
+        setErrorMessage('');
         try {
-            const {data} = await axios.get(query);
-            if (data.docs.length === 0) {
-                setErrorMessage('Oops! No books were found. Please try again.');
+            let queryParts = [];
+            if (searchParams.title) queryParts.push(`title=${encodeURIComponent(searchParams.title)}`);
+            if (searchParams.subject) queryParts.push(`subject=${encodeURIComponent(searchParams.subject)}`);
+            if (searchParams.keyword) queryParts.push(`keyword=${encodeURIComponent(searchParams.keyword)}`);
+            if (searchParams.author) queryParts.push(`author=${encodeURIComponent(searchParams.author)}`);
+            if (searchParams.excludeAuthor) queryParts.push(`excludeAuthor=${encodeURIComponent(searchParams.excludeAuthor)}`);
+            const query = `https://openlibrary.org/search.json?${queryParts.join('&')}&limit=10`;
+
+            const response = await axios.get(query);
+            if (response.data.docs.length === 0) {
+                setErrorMessage('No books found. Please try again.');
                 setResults([]);
-                localStorage.removeItem(`searchResults-${user ? user.sub : 'guest'}`);
             } else {
-                const filteredResults = searchParams.excludeAuthor.trim() ?
-                    data.docs.filter(book =>
-                        !(book.author_name || []).some(author =>
-                            author.toLowerCase().includes(searchParams.excludeAuthor.toLowerCase())
-                        )
-                    ) : data.docs;
-                setResults(filteredResults);
-                localStorage.setItem(`searchResults-${user ? user.sub : 'guest'}`, JSON.stringify(filteredResults));
+                setResults(response.data.docs);
                 setErrorMessage('');
             }
         } catch (error) {
-            console.error("Error fetching data: ", error);
+            console.error('Error fetching data:', error);
             setErrorMessage('Failed to search. Please check your network and try again.');
             setResults([]);
         } finally {
@@ -68,14 +44,7 @@ const useSearch = () => {
         }
     };
 
-    return {
-        searchParams,
-        handleChange,
-        handleSubmit,
-        results,
-        loading,
-        errorMessage
-    };
+    return { results, loading, errorMessage, fetchBooks };
 };
 
-export default useSearch;
+export default useBookSearch;

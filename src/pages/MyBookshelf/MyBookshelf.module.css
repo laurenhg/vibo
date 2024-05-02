@@ -1,0 +1,55 @@
+.bookshelfContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.bookshelfTitle {
+    margin-bottom: 40px;
+   text-align: center;
+    font-size: 1.7rem;
+    color: var(--color-text);
+
+}
+
+.searchResults {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the column width based on available space */
+    gap: 20px;
+    justify-content: center; /* Center the grid horizontally */
+    margin-top: 20px;
+}
+
+
+.removeButton {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.removeButton:hover {
+    background-color: var(--color-accent);
+}
+
+
+@media (max-width: 768px) {
+    .bookshelfContainer {
+        padding: 10px;
+    }
+
+    .searchResults {
+        gap: 10px;
+    }
+
+
+    .removeButton {
+        padding: 5px 10px;
+    }
+}
+

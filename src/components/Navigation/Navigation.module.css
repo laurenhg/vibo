@@ -3,22 +3,22 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.1rem 4rem;
-    background-color: white;
+    background-color: var(--color-background);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.navigation-left {
+.navigationLeft {
     display: flex;
     align-items: center;
 }
 
-.navigation-right {
+.navigationRight {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.navigation-links {
+.navigationLinks {
     display: flex;
     justify-content: flex-end;
     gap: 40px;
@@ -26,37 +26,39 @@
 
 .logo {
     margin-right: 2rem;
-    height: 250px;
+    height:15rem;
+    max-width:15rem;
 }
 
-.settings-button {
+.settingsButton {
     background: none;
     border: none;
     padding: 5px;
     cursor: pointer;
 }
 
-.gear-icon {
+.gearIcon {
     height: 25px;
 
 }
 
-.welcome-message {
-    color: black;
+.welcomeMessage {
+    color: var(--color-secondary);
 margin-right: 20px;
 font-weight: bold;
 }
-.logout-button {
+.logoutButton {
     margin-top: 10px;
     padding: 5px 10px;
-    background-color: #DE0F3F;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-background);
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.active-link, .default-link {
+.activeLink, .defaultLink {
     text-decoration: none;
     color: #392E3D;
     font-weight: 600;
@@ -65,11 +67,12 @@ font-weight: bold;
     font-size: 20px;
 }
 
-.active-link:hover, .default-link:hover {
-    text-decoration: underline;
+.activeLink:hover, .defaultLink:hover {
+    text-decoration: none;
+    color: var(--color-primary)
 }
 
-.active-link {
-    color: #DE0F3F;
+.activeLink {
+    color: var(--color-primary);
     text-decoration: none;
 }

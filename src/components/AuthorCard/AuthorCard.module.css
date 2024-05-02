@@ -1,4 +1,4 @@
-.author-card-container {
+.authorCardContainer {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
@@ -6,16 +6,16 @@
     align-items: flex-start;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: white;
+    background-color: var(--color-background);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.author-details {
+.authorDetails {
     flex: 1;
     text-align: left;
 }
 
-.author-image {
+.authorImage {
     width: 100px;
     height: 150px;
     margin-left: 20px;
@@ -24,17 +24,17 @@
     order: 2;
 }
 
-.author-details h2, .author-details p {
+.authorDetails h2, .authorDetails p {
     margin: 0 0 10px 0;
 
 }
 
-.author-label {
+.authorLabel {
     font-weight: bold;
-    color: black;
+    color: var(--color-text);
 }
 
-.author-bio, .author-details p span {
+.authorBio, .authorDetails p span {
     font-weight: normal;
     color: black;
 }
@@ -46,23 +46,23 @@ hr {
     margin: 20px 0;
 }
 
-.author-works h3 {
-    color: #DE0F3F;
+.authorWorks h3 {
+    color: var(--color-primary);
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.author-works ul {
+.authorWorks ul {
     list-style: none;
     padding: 0;
 }
 
-.author-works li a {
-    color: black;
+.authorWorks li a {
+    color: var(--color-text);
     text-decoration: none;
 }
 
-.author-works li a:hover {
-    color: #DE0F3F;
+.authorWorks li a:hover {
+    color: var(--color-primary);
     text-decoration: underline;
 }

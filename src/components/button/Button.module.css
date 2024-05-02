@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     background-color: transparent;
-    /*border: 1px solid gray;*/
+    border-radius: 5px;
     border: none;
     cursor: pointer;
     margin: 20px auto;
@@ -17,7 +17,7 @@
 
 .buttonIcon {
     flex: 0 1 20%;
-    background-color: white;
+    background-color: var(--color-background);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,8 +32,8 @@
 
 .buttonText {
     flex: 1;
-    background-color: #DE0F3F;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-background);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,21 +44,21 @@
 }
 
 .customButton:hover .buttonText {
-    background-color: darkred;
+    background-color: var(--color-rollover);
 }
 
-.button-normal {
+.buttonNormal {
     background-color: initial;
-    color: black;
+    color: var(--color-text);
 }
 
-.button-added {
-    background-color: deepskyblue;
-    color: white;
+ .buttonAdded {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
 }
 
-.book-added {
+.bookAdded {
     text-align: center;
-    color: deepskyblue;
+    color: var(--color-secondary);
     font-weight: bolder;
 }

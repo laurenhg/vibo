@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from "../Authentication/AuthContext.jsx";
-import './Navigation.css';
-import logoImage from '../../../../untitled/src/assets/ViBo.png';
-import gearIcon from '../../../src/assets/gear.png';
+import styles from './Navigation.module.css'
+import logoImage from '../../assets/ViBo.png'
+import gearIcon from '../../assets/gear.png'
 
 function Navigation() {
     const { user, logout } = useAuth();
@@ -19,22 +19,28 @@ function Navigation() {
     };
 
     return (
-        <nav className="navigation">
-            <div className="navigation-left">
-                <img src={logoImage} alt="logo" className="logo"/>
+        <nav className={styles.navigation}>
+            <div className={styles.navigationLeft}>
+                <img src={logoImage} alt="logo" className={styles.logo}/>
             </div>
-            <div className="navigation-links">
-                <NavLink to="/TrendingHome" className={({isActive}) => isActive ? 'active-link' : 'default-link'}>Home</NavLink>
-                <NavLink to="/Search" className={({isActive}) => isActive ? 'active-link' : 'default-link'}>Search</NavLink>
-                <NavLink to="/MyBookshelf" className={({isActive}) => isActive ? 'active-link' : 'default-link'}>My Bookshelf</NavLink>
-                <NavLink to="/AuthorPortal" className={({isActive}) => isActive ? 'active-link' : 'default-link'}>Author Portal</NavLink>
+            <div className={styles.navigationLinks}>
+                <NavLink to="/TrendingHome"
+                         className={({isActive}) => isActive ? styles.activeLink : styles.defaultLink}>Home</NavLink>
+                <NavLink to="/Search"
+                         className={({isActive}) => isActive ? styles.activeLink : styles.defaultLink}>Search</NavLink>
+                <NavLink to="/MyBookshelf"
+                         className={({isActive}) => isActive ? styles.activeLink : styles.defaultLink}>My
+                    Bookshelf</NavLink>
+                <NavLink to="/AuthorPortal"
+                         className={({isActive}) => isActive ? styles.activeLink : styles.defaultLink}>Author
+                    Portal</NavLink>
             </div>
-            <div className="navigation-right">
-                {user && <span className="welcome-message">Welcome, {user.sub}!</span>}
-                <button onClick={handleSettings} className="settings-button">
-                    <img src={gearIcon} alt="Settings" className="gear-icon"/>
+            <div className={styles.navigationRight}>
+                {user && <span className={styles.welcomeMessage}>Welcome, {user.sub}!</span>}
+                <button onClick={handleSettings} className={styles.settingsButton}>
+                    <img src={gearIcon} alt="Settings" className={styles.gearIcon}/>
                 </button>
-                <button onClick={handleLogout} className="logout-button">Logout</button>
+                <button onClick={handleLogout} className={styles.logoutButton}>Log-out</button>
             </div>
         </nav>
     );

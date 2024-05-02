@@ -1,0 +1,57 @@
+.authorPortalContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.authorPortalContainer h2 {
+    margin-bottom: 3px;
+}
+
+.authorSearchForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.authorSearchInput {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 20rem;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.authorSearchButton {
+    padding: 10px 20px;
+    background-color: var(--color-primary);
+    border: none;
+    color: var(--color-background);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.authorSearchButton:hover {
+    background-color: var(--color-primary-dark); /* Ensure you have this color defined, or replace with a specific color */
+}
+
+.loadingMessage {
+    color: #666;
+    text-align: center;
+}
+
+.errorMessage {
+    color: var(--color-primary);
+    text-align: center;
+}

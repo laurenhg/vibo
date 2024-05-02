@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {AuthContext} from "../../components/Authentication/AuthContext.jsx";
-import '../ProfileSettings/ProfileSettings.css'
+import styles from '../ProfileSettings/ProfileSettings.module.css'
 
 
 const ProfileSettings = () => {
@@ -46,9 +46,9 @@ const ProfileSettings = () => {
     };
 
     return (
-        <div className="profile-settings-container">
+        <div className={styles.profileSettingsContainer}>
             <h2>Profile Settings</h2>
-            <div className="form-group">
+            <div className={styles.formGroup}>
                 <label>Username:</label>
                 <input
                     type="text"
@@ -58,7 +58,7 @@ const ProfileSettings = () => {
                     onChange={handleInputChange}
                 />
             </div>
-            <div className="form-group">
+            <div className={styles.formGroup}>
                 <label>Current Password:</label>
                 <input
                     type="password"
@@ -68,7 +68,7 @@ const ProfileSettings = () => {
                     onChange={handleInputChange}
                 />
             </div>
-            <div className="form-group">
+            <div className={styles.formGroup}>
                 <label>New Password:</label>
                 <input
                     type="password"
@@ -78,7 +78,7 @@ const ProfileSettings = () => {
                     onChange={handleInputChange}
                 />
             </div>
-            <div className="form-group">
+            <div className={styles.formGroup}>
                 <label>Confirm New Password:</label>
                 <input
                     type="password"
