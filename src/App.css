@@ -1,57 +1,22 @@
-/* fonts, colors, global styles, Pages, components */
 @import url("https://use.typekit.net/mkb6hpk.css");
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-/*1.-----------Global Styles--------*/
-
-.appContainer {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-main {
-    flex: 1;
-}
-
-.footer {
-    margin-top: auto; /* This pushes the footer to the bottom */
-}
-
-.image {
-    width: 100%;
-    height: auto;
-}
-
-body {
-    font-family: "Degular Display";
-    color: #392E3D
-}
-
-.logo {
-    font-weight: 800;
-    font-size: 76px;
-   letter-spacing: 1px;
-    color: #E22742;
-    margin: 0;
-}
-
-.byline{
-    margin: 0;
-}
-
-h2 {
-    font-weight: 400;
-    font-size:26px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
 }
 
 
+@media (max-width: 768px) {
+    .book-card-container{
+        grid-template-columns: repeat(3, 1fr);
+    }
 
+}
 
-
+@media (max-width: 480px) {
+    .book-card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

@@ -51,15 +51,3 @@
 }
 
 
-@media (max-width: 768px) {
-    .book-card-container{
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-}
-
-@media (max-width: 480px) {
-    .book-card-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}

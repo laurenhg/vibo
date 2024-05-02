@@ -1,67 +1,73 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useShelf } from "../../pages/MyBookshelf/MyBookShelfContext/MyBookshelfContext.jsx";
-import styles from '../BookDetails/BookDetails.module.css';
 import BookCoverInfo from "./BookDetailsComponents/BookCoverInfo.jsx";
 import BookDetailsSection from "./BookDetailsComponents/BookDetailsSection.jsx";
 import BookDescription from "./BookDetailsComponents/BookDescription.jsx";
 import ShelfActionButtons from "./BookDetailsComponents/ShelfActionButtons.jsx";
+import styles from '../BookDetails/BookDetails.module.css';
+import { useQuery } from 'react-query';
 
 const BookDetails = () => {
     const { workId } = useParams();
-    const [workData, setWorkData] = useState(null);
-    const [editions, setEditions] = useState(null);
-    const [loading, setLoading] = useState(true);
     const { myBookshelf, addToMyBookshelf, removeFromMyBookshelf } = useShelf();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchBookDetails = async () => {
-            setLoading(true);
-            try {
-                const workResponse = await axios.get(`https://openlibrary.org/works/${workId}.json`);
-                setWorkData(workResponse.data);
-                const editionsResponse = await axios.get(`https://openlibrary.org/works/${workId}/editions.json`);
-                setEditions(editionsResponse.data.entries);
-            } catch (error) {
-                console.error('Error fetching book details:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchBookDetails();
-    }, [workId]);
-
-    // Memoizing the computation of compiledDetails
-    const compiledDetails = useMemo(() => {
-        if (!workData || !editions) return null;
-
+    const fetchBookDetails = async () => {
+        const workResponse = await axios.get(`https://openlibrary.org/works/${workId}.json`);
+        const editionsResponse = await axios.get(`https://openlibrary.org/works/${workId}/editions.json`);
+        const editions = editionsResponse.data.entries;
         const firstEditionWithCover = editions.find(edition => edition.covers && edition.covers.length > 0) || editions[0];
+
         return {
-            title: workData.title,
-            authors: workData.authors ? workData.authors.map(author => author.name).join(', ') : 'N/A', // assuming authors array has name property
+            title: workResponse.data.title,
+            authors: workResponse.data.authors ? workResponse.data.authors.map(author => author.name).join(', ') : 'N/A',
             coverId: firstEditionWithCover.covers ? firstEditionWithCover.covers[0] : undefined,
             publisher: firstEditionWithCover.publishers ? firstEditionWithCover.publishers.join(', ') : 'N/A',
             publishDate: firstEditionWithCover.publish_date,
             pageCount: firstEditionWithCover.number_of_pages,
             language: firstEditionWithCover.languages ? firstEditionWithCover.languages.map(lang => lang.key.split('/').pop()).join(', ') : 'N/A',
-            subjects: workData.subjects ? workData.subjects.join(', ') : 'N/A',
-            description: workData.description ? (typeof workData.description === 'string' ? workData.description : workData.description.value) : 'N/A',
+            subjects: workResponse.data.subjects ? workResponse.data.subjects.join(', ') : 'N/A',
+            description: workResponse.data.description ? (typeof workResponse.data.description === 'string' ? workResponse.data.description : workResponse.data.description.value) : 'N/A',
         };
-    }, [workData, editions]);
+    };
 
-    if (loading) return <div className={styles.bookDetailsContainer}>Loading...</div>;
-    if (!compiledDetails) return <div className={styles.bookDetailsContainer}>Book details not found.</div>;
+    const {
+        data: details,
+        error,
+        isLoading
+    } = useQuery(['bookDetails', workId], fetchBookDetails, {
+        staleTime: 6000000,
+        cacheTime: 900000,
+        retry: false, // To manage retry behavior
+        onError: (err) => {
+            console.error('Error fetching book details:', err);
+        }
+    });
+
+    const handleBack = () => navigate(-1);
+
+    const toggleShelf = () => {
+        const bookIsOnShelf = myBookshelf.some(book => book.workId === workId);
+        if (bookIsOnShelf) {
+            removeFromMyBookshelf(workId);
+        } else {
+            addToMyBookshelf({ ...details, workId });
+        }
+    };
+
+    if (isLoading) return <div className={styles.bookDetailsContainer}>Loading...</div>;
+    if (error) return <div className={styles.bookDetailsContainer}>Error fetching book details.</div>;
+    if (!details) return <div className={styles.bookDetailsContainer}>Book details not found.</div>;
 
     return (
         <div className={styles.bookDetailsContainer}>
-            <BookCoverInfo details={compiledDetails} styles={styles}/>
+            <BookCoverInfo details={details} styles={styles}/>
             <hr className={styles.horizontalLine}/>
-            <BookDetailsSection details={compiledDetails} styles={styles}/>
-            <BookDescription description={compiledDetails.description} styles={styles}/>
-            <ShelfActionButtons handleBack={() => navigate(-1)} shelfAction={myBookshelf.some(book => book.workId === workId) ? 'added' : 'notAdded'}/>
+            <BookDetailsSection details={details} styles={styles}/>
+            <BookDescription description={details.description} styles={styles}/>
+            <ShelfActionButtons handleBack={handleBack} toggleShelf={toggleShelf} shelfAction={myBookshelf.some(book => book.workId === workId) ? 'added' : 'notAdded'}/>
         </div>
     );
 };

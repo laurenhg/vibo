@@ -68,7 +68,8 @@ font-weight: bold;
 }
 
 .activeLink:hover, .defaultLink:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: var(--color-primary)
 }
 
 .activeLink {

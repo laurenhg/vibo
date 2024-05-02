@@ -1,14 +1,12 @@
 @import url("https://use.typekit.net/mkb6hpk.css");
-@import url("https://use.typekit.net/mkb6hpk.css");
-:root {
 
-  --color-primary:#DE0F3F;
-  --color-secondary:#00BFFF;
-  --color-background:#FFFFFF;
-  --color-accent:#87CEEB;
+:root {
+  --color-primary: #DE0F3F;
+  --color-secondary: #00BFFF;
+  --color-background: #FFFFFF;
+  --color-accent: #87CEEB;
   --color-input: #333333;
   --color-rollover: #8B0000;
-
 }
 
 * {
@@ -17,60 +15,31 @@
   box-sizing: border-box;
 }
 
-img {
-  max-width: 100%; /* Limit the maximum width of images to their container */
-  height: auto; /* Maintain the aspect ratio of images */
-}
-
-body{
-  font-family: Degular;
+body {
+  font-family: 'Degular', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
-  text-rendering: optimizeLegibiity;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  color: #392E3D; /* Define text color here for global usage */
+}
 
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 button, input, select, textarea {
   font-family: inherit;
 }
 
-h1{
-  font-size: 3.2em;
-  line-height: 1.1;
-  margin-block: 0.65em;
+h1, h2, h3, h4, p, figure, figcaption {
+  margin: 0;
 }
 
-h2 {
-  margin-block: .80em;
-
-}
-
-h3 {
-  margin-block: 1em;
-}
-
-h4 {
-  margin-block: 1.33em;
-}
-
-p{
-  margin-block: 0.5em;
-}
-
-figure {
-  margin: 0 0 2em 0;
-}
-
-figcaption {
-  text-align: right;
-  font-size: 0.9em;
-}
-
-a,
-a:visited {
-  color: var(--)
-}
+/*a, a:visited {*/
+/*  color: var(--color-primary); !* Adjust this to use your primary color *!*/
+/*}*/

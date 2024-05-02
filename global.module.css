@@ -1,0 +1,15 @@
+.appContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.mainContent {
+    flex: 1;
+    overflow: auto;
+    min-height: calc(100vh - 120px); /* Adjust the footer height if needed */
+}
+
+.footer {
+    margin-top: auto;
+}
