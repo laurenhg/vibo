@@ -1,7 +1,7 @@
 import React from 'react';
 
 const BookCoverInfo = ({ details, styles }) => {
-    console.log("Styles in BookCoverInfo:", styles);
+    // console.log("Styles in BookCoverInfo:", styles);
     return (
         <div className={styles['bookCoverInfo']}>
             <div className={styles['bookCoverContainer']}>

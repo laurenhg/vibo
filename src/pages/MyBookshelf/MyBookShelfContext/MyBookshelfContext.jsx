@@ -15,16 +15,16 @@ export const MyBookshelfProvider = ({ children }) => {
     const [myBookshelf, setMyBookshelf] = useState(initialBookshelf);
 
     useEffect(() => {
-        console.log("Attempting to load bookshelf...");
+        // console.log("Attempting to load bookshelf...");
         const storedData = localStorage.getItem(localStorageKey);
         if (storedData) {
-            console.log(`Bookshelf data found: ${storedData}`);
+            // console.log(`Bookshelf data found: ${storedData}`);
             setMyBookshelf(JSON.parse(storedData));
         }
     }, [user, localStorageKey]);
 
     useEffect(() => {
-        console.log(`Saving bookshelf to localStorage for user ${user?.sub}:`, myBookshelf);
+        // console.log(`Saving bookshelf to localStorage for user ${user?.sub}:`, myBookshelf);
         localStorage.setItem(localStorageKey, JSON.stringify(myBookshelf));
     }, [myBookshelf, user, localStorageKey]);
 
@@ -32,14 +32,13 @@ export const MyBookshelfProvider = ({ children }) => {
         if (!myBookshelf.some(b => b.workId === book.workId)) {
             const updatedShelf = [...myBookshelf, book];
             setMyBookshelf(updatedShelf);
-            console.log("Added book to bookshelf:", book);
+            // console.log("Added book to bookshelf:", book);
         }
     };
 
     const removeFromMyBookshelf = (workId) => {
         const updatedShelf = myBookshelf.filter(book => book.workId !== workId);
         setMyBookshelf(updatedShelf);
-        console.log("Removed book from bookshelf, workId:", workId);
     };
 
     return (

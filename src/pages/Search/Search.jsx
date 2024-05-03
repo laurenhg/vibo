@@ -37,8 +37,8 @@ const Search = () => {
                             <img src={iconMap[key]} alt={`${key} icon`}/>
                         </div>
                         <input
-                            {...register(key)} // Register the input with react-hook-form
-                            placeholder={key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}
+                            {...register(key)}
+                            placeholder={key === 'excludeAuthor' ? 'Exclude Author (use full name)' : (key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1'))}
                             className={styles['searchFormInput']}
                             disabled={isSubmitting || loading}
                         />

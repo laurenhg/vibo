@@ -22,17 +22,24 @@ const useBookSearch = () => {
             let queryParts = [];
             if (searchParams.title) queryParts.push(`title=${encodeURIComponent(searchParams.title)}`);
             if (searchParams.subject) queryParts.push(`subject=${encodeURIComponent(searchParams.subject)}`);
-            if (searchParams.keyword) queryParts.push(`keyword=${encodeURIComponent(searchParams.keyword)}`);
+            if (searchParams.keyword) queryParts.push(`q=${encodeURIComponent(searchParams.keyword)}`);
             if (searchParams.author) queryParts.push(`author=${encodeURIComponent(searchParams.author)}`);
             if (searchParams.excludeAuthor) queryParts.push(`excludeAuthor=${encodeURIComponent(searchParams.excludeAuthor)}`);
-            const query = `https://openlibrary.org/search.json?${queryParts.join('&')}&limit=10`;
+
+            const query = `https://openlibrary.org/search.json?${queryParts.join('&')}&limit=35`;
 
             const response = await axios.get(query);
-            if (response.data.docs.length === 0) {
+            let docs = response.data.docs;
+
+            if (searchParams.excludeAuthor) {
+                docs = docs.filter(doc => !doc.author_name || !doc.author_name.includes(searchParams.excludeAuthor));
+            }
+
+            if (docs.length === 0) {
                 setErrorMessage('No books found. Please try again.');
                 setResults([]);
             } else {
-                setResults(response.data.docs);
+                setResults(docs);
                 setErrorMessage('');
             }
         } catch (error) {

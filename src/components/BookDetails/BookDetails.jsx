@@ -15,22 +15,36 @@ const BookDetails = () => {
     const navigate = useNavigate();
 
     const fetchBookDetails = async () => {
-        const workResponse = await axios.get(`https://openlibrary.org/works/${workId}.json`);
-        const editionsResponse = await axios.get(`https://openlibrary.org/works/${workId}/editions.json`);
-        const editions = editionsResponse.data.entries;
-        const firstEditionWithCover = editions.find(edition => edition.covers && edition.covers.length > 0) || editions[0];
+        try {
+            const workResponse = await axios.get(`https://openlibrary.org/works/${workId}.json`);
+            const editionsResponse = await axios.get(`https://openlibrary.org/works/${workId}/editions.json`);
+            const editions = editionsResponse.data.entries;
+            const firstEditionWithCover = editions.find(edition => edition.covers && edition.covers.length > 0) || editions[0];
 
-        return {
-            title: workResponse.data.title,
-            authors: workResponse.data.authors ? workResponse.data.authors.map(author => author.name).join(', ') : 'N/A',
-            coverId: firstEditionWithCover.covers ? firstEditionWithCover.covers[0] : undefined,
-            publisher: firstEditionWithCover.publishers ? firstEditionWithCover.publishers.join(', ') : 'N/A',
-            publishDate: firstEditionWithCover.publish_date,
-            pageCount: firstEditionWithCover.number_of_pages,
-            language: firstEditionWithCover.languages ? firstEditionWithCover.languages.map(lang => lang.key.split('/').pop()).join(', ') : 'N/A',
-            subjects: workResponse.data.subjects ? workResponse.data.subjects.join(', ') : 'N/A',
-            description: workResponse.data.description ? (typeof workResponse.data.description === 'string' ? workResponse.data.description : workResponse.data.description.value) : 'N/A',
-        };
+            // Fetch author names using the Authors API
+            const authorNames = await Promise.all(
+                (workResponse.data.authors || []).map(async (author) => {
+                    if (!author.author.key) return 'N/A'; // Guard clause in case the key is missing
+                    const authorResponse = await axios.get(`https://openlibrary.org${author.author.key}.json`);
+                    return authorResponse.data.name; // Assume the response structure includes a 'name' field
+                })
+            );
+
+            return {
+                title: workResponse.data.title,
+                authors: authorNames.join(', ') || 'N/A',
+                coverId: firstEditionWithCover.covers ? firstEditionWithCover.covers[0] : undefined,
+                publisher: firstEditionWithCover.publishers ? firstEditionWithCover.publishers.join(', ') : 'N/A',
+                publishDate: firstEditionWithCover.publish_date,
+                pageCount: firstEditionWithCover.number_of_pages,
+                language: firstEditionWithCover.languages ? firstEditionWithCover.languages.map(lang => lang.key.split('/').pop()).join(', ') : 'N/A',
+                subjects: workResponse.data.subjects ? workResponse.data.subjects.join(', ') : 'N/A',
+                description: workResponse.data.description ? (typeof workResponse.data.description === 'string' ? workResponse.data.description : workResponse.data.description.value) : 'N/A',
+            };
+        } catch (error) {
+            console.error('Error fetching book details:', error);
+            throw error; // rethrow the error to be handled by useQuery onError
+        }
     };
 
     const {

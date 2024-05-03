@@ -15,12 +15,12 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const initializeAuth = async () => {
             const token = localStorage.getItem('token');
-            console.log("Token from storage:", token);
+            // console.log("Token from storage:", token);
 
             if (token) {
                 try {
                     const decoded = jwtDecode(token);
-                    console.log("Decoded token data:", decoded);
+                    // console.log("Decoded token data:", decoded);
                     setUser(decoded);
                     setStatus('done');
                 } catch (error) {
@@ -50,18 +50,16 @@ export const AuthProvider = ({ children }) => {
                 }
             });
 
-            console.log("login response:", response.data);
 
             if (response.status !== 201) {
                 throw new Error('Registration failed');
             }
 
             const { token } = response.data;
-            console.log("JWT token recieved:", token);
             localStorage.setItem('token', token);
             setUser(jwtDecode(token));
 
-            // navigate('/TrendingHome');
+
         } catch (error) {
             console.error('Registration error:', error);
             throw error;
