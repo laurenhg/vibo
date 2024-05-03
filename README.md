@@ -57,9 +57,9 @@ npm install -g npm@latest
 
 3. Clone the ViBo repository 
 
-...
-
-...
+```
+https://github.com/laurenhg/vibo
+```
 
 4. Install npm packages:
 
