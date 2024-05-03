@@ -1,6 +1,5 @@
-
-AdobeXD files: https://xd.adobe.com/view/c8248d74-c1a0-4a77-994c-a5f5009ac048-9d77/
-GitHub repository:
+[Adobe XD design files](https://xd.adobe.com/view/c8248d74-c1a0-4a77-994c-a5f5009ac048-9d77/) <br>
+[ViBo GitHub repository](https://github.com/laurenhg/vibo)
 
 
 # ViBo
@@ -15,13 +14,17 @@ GitHub repository:
 ![ViBo Screenshot](./src/assets/ViBoSearch.png)
 
 ## About this Project
+ 
 
-This project was created as a final assignment for the [NOVI Hogeschool bootcamp for Full Stack Developer](https://www.novi.nl/full-stack-developer/) - Frontend course. I created a virtual bookshelf that allows users to search for and store books to their private bookshelf using the [Open Library API](https://openlibrary.org/developers/api) and the NOVI Educational Backend (https://novi.datavortex.nl).
 
-Users can:
+Explore the [ViBo GitHub repository](https://github.com/laurenhg/vibo) for so urce code, project updates, and more.
+Welcome to the GitHub repository for ViBo, my project developed during the [NOVI Hogeschool bootcamp for Full Stack Developer](https://www.novi.nl/full-stack-developer/) - Frontend course. This application serves as a virtual bookshelf that allows users to explore, save, and manage books sourced through the [Open Library API](https://openlibrary.org/developers/api) and the NOVI Educational Backend (https://novi.datavortex.nl).
+For a closer look at the design and layout of ViBo, check out the project's [Adobe XD design files](https://xd.adobe.com/view/c8248d74-c1a0-4a77-994c-a5f5009ac048-9d77/).
+
+With this application, users can:
 
 - Create a user account by registering and logging in
-- See their user account and change their password (logged in users only)
+- See their user account and change their password (logged-in users only)
 - Login and logout
 - View a display of 25 random books each time they log in
 - Search for books based on selection criteria such as title, subject, keyword, author, and excluding author
