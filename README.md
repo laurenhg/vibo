@@ -17,7 +17,7 @@
  
 
 
-Explore the [ViBo GitHub repository](https://github.com/laurenhg/vibo) for so urce code, project updates, and more.
+
 Welcome to the GitHub repository for ViBo, my project developed during the [NOVI Hogeschool bootcamp for Full Stack Developer](https://www.novi.nl/full-stack-developer/) - Frontend course. This application serves as a virtual bookshelf that allows users to explore, save, and manage books sourced through the [Open Library API](https://openlibrary.org/developers/api) and the NOVI Educational Backend (https://novi.datavortex.nl).
 For a closer look at the design and layout of ViBo, check out the project's [Adobe XD design files](https://xd.adobe.com/view/c8248d74-c1a0-4a77-994c-a5f5009ac048-9d77/).
 
