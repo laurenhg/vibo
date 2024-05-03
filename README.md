@@ -49,7 +49,7 @@ If you wish to use your own API key, you'll need to pair it with `AuthContext.js
 
 1. Download and install [Node.js](https://nodejs.org/en/download).
 2. Download and install the latest version of [npm](https://www.npmjs.com/).
-. Download and install the latest version of [npm] (https://www.npmjs.com/)
+
 
 ```
 npm install -g npm@latest
