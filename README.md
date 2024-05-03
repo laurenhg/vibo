@@ -12,7 +12,7 @@ GitHub repository:
 - [Installation](#installation)
 - [Getting Started](#getting-started)
 
-![ViBo Screenshot](url-to-image-if-available)
+![ViBo Screenshot](./src/assets/ViBoSearch.png)
 
 ## About this Project
 
