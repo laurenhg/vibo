@@ -1,13 +1,18 @@
-import { useState, useContext, useCallback } from 'react';
+import { useState, useContext, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { AuthContext } from "../../../components/Authentication/AuthContext.jsx";
 
 const useAuthorData = () => {
     const { user } = useContext(AuthContext);
-    const [authorData, setAuthorData] = useState(null);
-    const [works, setWorks] = useState([]);
+    const [authorData, setAuthorData] = useState(() => JSON.parse(sessionStorage.getItem('authorData')) || null);
+    const [works, setWorks] = useState(() => JSON.parse(sessionStorage.getItem('works')) || []);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        sessionStorage.setItem('authorData', JSON.stringify(authorData));
+        sessionStorage.setItem('works', JSON.stringify(works));
+    }, [authorData, works]);
 
     const fetchAuthorDetails = useCallback(async (authorKey) => {
         setLoading(true);
