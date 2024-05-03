@@ -60,6 +60,10 @@ npm install -g npm@latest
 ```
 https://github.com/laurenhg/vibo
 ```
+or: 
+```
+git@github.com:laurenhg/vibo.git
+```
 
 4. Install npm packages:
 
